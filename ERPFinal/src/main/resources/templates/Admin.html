@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <title>Medusa Shop</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+
+<body translate="no">
+    <div class="container-fluid p-0">
+
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top d-flex p-2">
+
+            <!-- Logo -->
+            <a class="logo" href="#">
+                <img src="images/logomedusa.png" alt="" class="offset-2">
+            </a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Search -->
+                <form class="form-outline col-md-5 ">
+                    <div class="md-form my-0">
+                        <div>
+                            <input class="form-control mr-sm-2 d-flex flex-row bg-light" type="text"
+                                placeholder="Search for Name" aria-label="Search">
+                        </div>
+
+                        <div class="search_btn d-flex flex-row">
+                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Notification -->
+                <ul class="navbar-nav nav-flex-icons offset-3">
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-envelope-o mr-2"></i>
+                            <span class="number bg-success">+5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-bell-o mr-2" aria-hidden="true"></i>
+                            <span class="number bg-warning">+1</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-cogs mr-3" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item avatar  pl-md-4" data-toggle="dropdown" >
+                        <img src="images/avt.png" alt="" class="dropdown-toggle" aria-haspopup="true"
+                        aria-expanded="false">
+                        <small style="color: #a8c5de">
+                            <a href="#">Administrator</a>
+                        </small>
+                    </li>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">
+                            <a href="">Trang chủ</a>
+                        </button>
+                        
+                            <form action="#" th:action="@{/logout}" method="POST">
+                            <button class="dropdown-item" type="submit">
+                            		LogOut
+						       </button>
+						    </form>
+                    </div>
+                </ul>
+
+            </div>
+
+            <!-- Collapsible content -->
+        </nav>
+
+        <!-- container -->
+        <div class="row mt-5 pt-1" id="body-row">
+
+            <!-- Side bar -->
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+
+                <ul class="list-group">
+
+                    <li
+                        class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                        <small><strong>Quản trị</strong></small>
+                    </li>
+
+                    <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-dashboard fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Bảng điều khiển</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu1' class="collapse sidebar-submenu">
+                        <a href="http://localhost:8080/" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-line-chart ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Báo cáo</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Đơn hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Báo giá</span>
+                        </a>
+                    </div>
+                    <a href="#submenu2" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-user fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Thông tin</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu2' class="collapse sidebar-submenu">
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Nhân viên</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Khách hàng</span>
+                        </a>
+                    </div>
+
+                    <a href="#submenu3" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-tasks fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Công nợ</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu3' class="collapse sidebar-submenu">
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Phải thu</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Phải trả</span>
+                        </a>
+                    </div>
+
+                    <li
+                        class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                        <small><strong>Tùy chọn</strong></small>
+                    </li>
+
+                    <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-shopping-cart fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Bán hàng</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu4' class="collapse sidebar-submenu">
+                        <a href="sales" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-plus-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Bán hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-refresh ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Đổi hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Tạo tài khoản</span>
+                        </a>
+                    </div>
+
+                    <a href="http://localhost:8080/warehouse" class="bg-dark list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-calendar fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Kho hàng</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="bg-dark list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-search fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Tìm kiếm</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="bg-dark list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-envelope-o fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Messages
+                                <!-- <span class="badge badge-pill badge-primary ml-2">5</span> -->
+                            </span>
+                        </div>
+                    </a>
+
+                    <li class="list-group-item sidebar-separator menu-collapsed"></li>
+
+                    <a href="#" data-toggle="sidebar-colapse"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="col mt-3">
+                <canvas  id="line-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+    <script src="main.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            Chart.defaults.global.defaultFontColor = '#000000';
+            Chart.defaults.global.defaultFontFamily = 'Arial';
+            Chart.defaults.global.defaultFontSize = 20;
+            var lineChart = document.getElementById('line-chart').getContext("2d");;
+            lineChart.canvas.parentNode.style.height = '595px';
+            lineChart.canvas.parentNode.style.width = '1150px';
+            
+            var myChart = new Chart(lineChart, {
+                type: 'line',
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
+                    datasets: [
+                        {
+                            label: "Women's Fashion",
+                            data: [80, 30, 63, 20, 110, 1150],
+                            backgroundColor: 'rgba(255,0,0,0)',
+                            borderColor: '#1822ed',
+                            borderWidth: 1.5
+                        },
+                        {
+                            label: "Men's Fashion",
+                            data: [18, 72, 10, 39, 19, 75],
+                            backgroundColor: 'rgba(255,0,0,0)',
+                            borderColor: '#f2df07',
+                            borderWidth: 1.5
+                        },
+                        {
+                            label: "Shoer",
+                            data: [20, 35, 42, 80, 150, 200],
+                            backgroundColor: 'rgba(255,0,0,0)',
+                            borderColor: '#f21120',
+                            borderWidth: 1.5
+                        },
+                        {
+                            label: "Clock",
+                            data: [38, 52, 68, 45, 79, 155],
+                            backgroundColor: 'rgba(255,0,0,0)',
+                            borderColor: '#000000',
+                            borderWidth: 1.5
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    },
+                }
+            });
+        };
+        
+    </script>
+</body>
+
+</html>

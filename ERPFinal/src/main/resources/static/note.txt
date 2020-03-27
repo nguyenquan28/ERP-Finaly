@@ -1,0 +1,11 @@
+Các màn chính:
+    1. Báo cáo doanh thu.(oke)
+    2. Quản lý đơn hàng (Thay đổi tình trạng các đơn hàng đã đang giao + $).(*)
+    3. Báo giá (Chi tiết từng đơn hàng).
+    4. Công nợ phải thu ( Các đơn chưa thanh toán).
+    5. Lập đơn bán hàng (Chọn hình thức thanh toán, In hóa đơn các kiểu). (*)
+    6. Trả hàng.
+    7. Tạo tài khoản khách hàng ( Thêm sau).
+    8. List hàng trong kho.(oke)
+    9. Tìm kiếm hàng hóa hóa đơn các kiểu.(oke)
+    10. To be continued...(...Loading 99%...).

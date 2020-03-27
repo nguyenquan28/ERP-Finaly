@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <title>Medusa Shop</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body translate="no">
+    <div class="container-fluid p-0">
+
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top d-flex p-2">
+
+            <!-- Logo -->
+            <a class="logo" href="#">
+                <img src="images/logomedusa.png" alt="" class="offset-2">
+            </a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Search -->
+                <form class="form-outline col-md-5 ">
+                    <div class="md-form my-0">
+                        <div>
+                            <input class="form-control mr-sm-2 d-flex flex-row bg-light" type="text"
+                                placeholder="Search for Name" aria-label="Search">
+                        </div>
+
+                        <div class="search_btn d-flex flex-row">
+                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Notification -->
+                <ul class="navbar-nav nav-flex-icons offset-3">
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-envelope-o mr-2"></i>
+                            <span class="number bg-success">+5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-bell-o mr-2" aria-hidden="true"></i>
+                            <span class="number bg-warning">+1</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-cogs mr-3" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item avatar  pl-md-4" data-toggle="dropdown">
+                        <img src="images/avt.png" alt="" class="dropdown-toggle" aria-haspopup="true"
+                            aria-expanded="false">
+                        <small style="color: #a8c5de">
+                            <a href="#">Administrator</a>
+                        </small>
+                    </li>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">
+                            <a href="">Trang chủ</a>
+                        </button>
+                        <button class="dropdown-item" type="button">
+                            <a href="#">Đăng xuất</a>
+                        </button>
+                    </div>
+                </ul>
+
+            </div>
+
+            <!-- Collapsible content -->
+        </nav>
+
+        <!-- container -->
+        <div class="row mt-5 pt-1" id="body-row">
+
+            <!-- Side bar -->
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+
+                <ul class="list-group">
+
+                    <li
+                        class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                        <small><strong>Quản trị</strong></small>
+                    </li>
+
+                    <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-dashboard fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Bảng điều khiển</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu1' class="collapse sidebar-submenu">
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-line-chart ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Báo cáo</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Đơn hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Báo giá</span>
+                        </a>
+                    </div>
+                    <a href="#submenu2" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-user fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Thông tin</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu2' class="collapse sidebar-submenu">
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Nhân viên</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Khách hàng</span>
+                        </a>
+                    </div>
+
+                    <a href="#submenu3" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-tasks fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Công nợ</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu3' class="collapse sidebar-submenu">
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Phải thu</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Phải trả</span>
+                        </a>
+                    </div>
+
+                    <li
+                        class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                        <small><strong>Tùy chọn</strong></small>
+                    </li>
+
+                    <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-shopping-cart fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Bán hàng</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu4' class="collapse sidebar-submenu">
+                        <a href="sales" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-plus-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Bán hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-refresh ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Đổi hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Tạo tài khoản</span>
+                        </a>
+                    </div>
+
+                    <a href="#" class="bg-dark list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-calendar fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Kho hàng</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="bg-dark list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-search fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Tìm kiếm</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="bg-dark list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-envelope-o fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Messages
+                                <!-- <span class="badge badge-pill badge-primary ml-2">5</span> -->
+                            </span>
+                        </div>
+                    </a>
+
+                    <li class="list-group-item sidebar-separator menu-collapsed"></li>
+
+                    <a href="#" data-toggle="sidebar-colapse"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+
+            <!-- Sales body -->
+            <div class="col body-sales">
+
+                <!-- Sales Infomation -->
+                <h2 class="mt-3">Bán hàng</h2>
+                <hr>
+                <div class="sales">
+                    <!-- Header -->
+                    <form class="form-group d-flex flex-row col-6 mt-2">
+                        <div class="d-flex flex-row mr-5">
+                            <label class="col-form-label pd-0">Chứng từ: </label>
+                            <div class="col-3">
+                                <input type="text" class="form-control-sm" placeholder="/BH" id="license">
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row">
+                            <label class="col-form-label pd-0">Ngày bán: </label>
+                            <div class="col-3">
+                                <input type="text" class="form-control-sm" placeholder="dd/MM/yyyy">
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <!-- Infomation -->
+                    <div class="infomation d-flex flex-row">
+                        <div class="sales-customer col-6">
+
+                            <!-- Insert Customer Information -->
+                            <h6>Thông tin khách hàng</h6>
+                            <form>
+                                <div class="form-group">
+                                    <div class="">
+                                        <div class="d-flex flex-row">
+                                            <input type="text" class="form-control" value=""
+                                                placeholder="Khách hàng" id="tenCT">
+                                            <input type="text" class="form-control" placeholder="Người đại diện" id="nguoiDaiDien">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <input type="text" class="form-control" placeholder="Email" id="email">
+                                            <input type="text" class="form-control" placeholder="Số thuế" id="soThue">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <input type="text" class="form-control"  placeholder="Điện thoại" id="phone">
+                                            <input type="text" class="form-control" placeholder="Địa chỉ" id="diaChi">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="sales-employees col-6">
+
+                            <!-- Insert Employees Infomation -->
+                            <h6>Thông tin nhân viên</h6>
+                            <form>
+                                <div class="form-group row">
+
+                                    <label class="col-sm-3 col-form-label ml-4">Nhân viên bán: </label>
+                                    <div class="col-8">
+                                        <select class="form-control" id="employees">
+                                           
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-3 col-form-label ml-4">Tên cửa hàng: </label>
+                                    <div class="col-8">
+                                        <select class="form-control" id="stores">
+                                            
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-3 col-form-label ml-4">Mã ca bán hàng: </label>
+                                    <div class="col-8">
+                                        <select class="form-control" id="salecodes">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <!-- Show product -->
+                    <div class="Choose-product d-flex flex-row">
+                        <form class="form-group d-flex flex-row">
+                            <div class="d-flex flex-row mr-5">
+                                <label class="col-form-label pd-0">Mã Sản Phẩm: </label>
+                                <div class="col-3">
+                                    <input type="text" class="form-control-sm" placeholder="***********" id="inputID">
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row">
+                                <label class="col-form-label pd-0 ml-5">Số lượng: </label>
+                                <div class="col-3">
+                                    <input type="text" class="form-control-sm" placeholder="***" id="amounts">
+                                </div>
+                            </div>
+                        </form>
+                        <button type="button" class="btn-sm btn btn-dark ml-5" id="create">Xác nhận</button>
+                    </div>
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Mã SP</th>
+                                <th scope="col">Tên SP</th>
+                                <th scope="col">Đơn vị</th>
+                                <th scope="col">Đơn giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table">
+
+                        </tbody>
+                    </table>
+                    <hr>
+                    <!-- Total -->
+                    <div class="total d-flex flex-row">
+                        <form class="col-5">
+                            <div class="form-group d-flex flex-row">
+                                <label class="col-form-label pd-0">Hình thức thanh toán:</label>
+                                <div class="col-7">
+                                    <select class="form-control-sm col-10" id="payments">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group d-flex flex-row">
+                                <label class="col-form-label pd-0 mr-5">Khuyến mãi:</label>
+                                <div class="col-7 ml-4">
+                                    <select class="form-control-sm col-10" id="discounts">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+
+                        </form>
+                        <button type="button" class="btn-sm btn btn-dark mr-3" id="submit">Xác nhận</button>
+
+                        <div class="total ml-5 col-3">
+                            <div class="Sum d-flex flex-row">
+                                <h6>Thành tiền: </h6>
+                                <p id="sum" class="ml-4"></p>
+                            </div>
+                            <div class="Sum d-flex flex-row">
+                                <h6>Khuyến mãi: </h6>
+                                <p id="" class="ml-2">000</p>
+                            </div>
+                            <div class="Sum d-flex flex-row">
+                                <h6>Tổng tiền: </h6>
+                                <p id="total" class="ml-4">000</p>
+                            </div>
+                        </div>
+
+                            <button type="button" class="btn-sm btn btn-dark mr-5 mb-3">Thanh toán</button>
+                            <button type="button" class="btn-sm btn btn-dark mr-5">In hóa đơn</button>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<!-- ------------------Script-------------------- -->
+    <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+    <script src="main.js"></script>
+    <script>
+	
+		/* Function show data */
+		$(document).ready(function () {
+				
+				$.ajax({ url: "http://localhost:8080/showEmployees" })
+					.then( function (data) {
+								document.getElementById("table").innerHTML = "";
+								/* console.log(data); */
+								for (let i = 0; i < data.length; i++) {
+									var rows = "";
+									rows += "<option>" + data[i].tenNhanVien + "</option>";
+									$(rows).appendTo("#employees");
+								}
+					})
+					
+				$.ajax({ url: "http://localhost:8080/showSalecodes" })
+					.then( function (data) {
+								document.getElementById("table").innerHTML = "";
+								/* console.log(data); */
+								for (let i = 0; i < data.length; i++) {
+									var rows = "";
+									rows += "<option>" + data[i].tenMaCa + "</option>";
+									$(rows).appendTo("#salecodes");
+								}
+					})
+					
+				$.ajax({ url: "http://localhost:8080/showStores" })
+					.then( function (data) {
+								document.getElementById("table").innerHTML = "";
+								/* console.log(data); */
+								for (let i = 0; i < data.length; i++) {
+									var rows = "";
+									rows += "<option>" + data[i].tenCuaHang + "</option>";
+									$(rows).appendTo("#stores");
+								}
+					})
+					
+				$.ajax({ url: "http://localhost:8080/showPayments" })
+					.then( function (data) {
+								document.getElementById("table").innerHTML = "";
+								/* console.log(data); */
+								for (let i = 0; i < data.length; i++) {
+									var rows = "";
+									rows += "<option>" + data[i].tenHTTT + "</option>";
+									$(rows).appendTo("#payments");
+								}
+					})
+					
+				$.ajax({ url: "http://localhost:8080/showDiscounts" })
+					.then( function (data) {
+								document.getElementById("table").innerHTML = "";
+								/* console.log(data); */
+								for (let i = 0; i < data.length; i++) {
+									var rows = "";
+									rows += "<option value=" +data[i].maKM+ ">" + data[i].tenKM + "</option>";
+									$(rows).appendTo("#discounts");
+								}
+					})
+			
+		});
+		
+		
+		
+		
+		
+		/* Function Add to  */
+		
+		/* Function save Product to Cart */
+		$(document).ready(function () {
+			$("#create").click(function () {
+	
+				$.ajax({ url: "http://localhost:8080/sales/addToCart?maSP=" + $("#inputID").val() })
+					.then(function (product) {
+                        
+						var rows = "";
+						rows += "<tr><td>" + product.maSP
+							+ "</td><td>" + product.tenSP
+							+ "</td><td>" + product.donVi
+							+ "</td><td>" + product.donGia
+							+ "</td><td>" + $("#amounts").val()
+							+ "</td><td>" + product.donGia*$("#amounts").val()
+							+ "</td></tr>";
+						$(rows).appendTo("#table");
+						$("#amounts").html()
+						$("#inputID").html()
+						/* Save carts */
+						let maGioHang = 2
+						let cart = {
+							"license" : $("#license").val(),
+							"maSP" : product.maSP,
+							"soLuong" : $("#amounts").val(),
+							"donGia" : $("#amounts").val(),
+							"phanLoai" : product.phanLoai,
+							"donVi" : product.donVi,
+							"ngaySanXuat" : product.ngaySanXuat,
+							"hanSuDung" : product.hanSuDung,
+							"tenSP" : product.tenSP,	
+							"tongTien" : product.donGia*$("#amounts").val()
+						}
+						
+						console.log(cart)
+						$.ajax({
+							url: "http://localhost:8080/sales/insertCart",
+							method: 'post', 
+							dataType: 'json',
+				            contentType: 'application/json',
+							data: JSON.stringify(cart)
+						})
+						
+				})
+			});
+		});
+		
+		/* Function save Company partner */
+		$(document).ready(function () {
+			$("#submit").click(function () {
+				
+				let company = {
+					"tenCT" : $("#tenCT").val(),
+					"nguoiDaiDien" : $("#nguoiDaiDien").val(),
+					"email" : $("#email").val(),
+					"soThue" : $("#soThue").val(),
+					"phone" : $("#phone").val(),
+					"diaChi" : $("#diaChi").val(),
+				}
+				
+				console.log(company)
+				
+				$.ajax({
+					url: "http://localhost:8080/company",
+					method: 'post', 
+					dataType: 'json',
+		            contentType: 'application/json',
+					data: JSON.stringify(company)
+				})
+			});
+		});
+		
+		/* Show all product in cart by ID sale */
+		$(document).ready(function () {
+			$("#submit").click(function () {	
+				var sum = 0;			
+				$.ajax({ url: "http://localhost:8080/sales/showCart?license=" + $("#license").val() })
+					.then(function (data) {
+						for (let i = 0; i < data.length; i++) {
+							console.log(data[i].tongTien)
+							sum +=  data[i].tongTien
+						}
+						console.log(sum)
+						$("#sum").html(sum)
+					})
+					
+				$.ajax({ url: "http://localhost:8080/sales/discounts?maKM=" + $("#discounts").val() })
+					.then(function (data) {
+						console.log(data)
+						console.log(data.phanTramKM)
+						console.log(sum)
+						console.log(parseInt($("#sum").val()))
+						console.log(data.phanTramKM * $("#sum").val())
+						let Discount = data.phanTramKM * $("#sum").val()
+						console.log(Discount)
+					})
+			});
+		});
+		
+		
+		
+	</script>
+	
+    
+    
+</body>
+
+</html>

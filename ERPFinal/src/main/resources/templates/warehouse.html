@@ -10,6 +10,7 @@
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="css/warehouse.css">
+    <link rel="stylesheet" href="css/modal-doihang.css">
 </head>
 
 <body onload="ShowAllDataWareHouse()">
@@ -190,7 +191,7 @@
 
                         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                             <span class="fa fa-refresh ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Đổi hàng</span>
+                            <span class="menu-collapsed" data-toggle="modal" data-target="#myModal1">Đổi hàng</span>
                         </a>
 
                         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
@@ -234,19 +235,22 @@
             </div>
             <!-- warehouse -->
             <div class="warehouse">
-                <div class="warehouse-path">
-                    <a href="http://localhost:8080/">Bảng Điều Khiển</a>
-                    <span> / Warehouse</span>   
-                </div>
-                <div class="warehouse-search mt-1">
-                    <div class="input-warehose col-lg-4">
-                        <input type="text" class="form-control col-lg-8 ip-search-warehose" id="inputSearchWarehouse" placeholder="Enter Name Product">
-                        <button type="button" class="btn-warehose btn btn-primary col-lg-2" id="searchWarehouse">Enter</button>
+                <div class="warehouse-path row">
+                    <div class=" col-md-4 mt-2">
+                        <a href="http://localhost:8080/">Bảng Điều Khiển</a>
+                        <span> / Warehouse</span>
                     </div>
-                    
+                    <div class="col"></div>
+                    <div class="input-warehose col-md-4 row">
+                        <label for="text" class="col-lg-2 mt-1">Search:</label>
+                        <input type="text" class="form-control col-lg-6 ip-search-warehose" id="inputSearchWarehouse" placeholder="(*-*)">
+                        
+                    </div>
+                      
                 </div>
+                
                 <div class="warehouse-show mt-2">
-                    <table style="width: 100%;">
+                    <table style="width: 100%;" id="sort">
                         <thead>
                             <tr class="row title">
                                 <th class="col">Id</th>
@@ -265,6 +269,120 @@
                     
                 </div>
             </div>
+
+            <!-- Model đổi hàng -->
+                <!-- Modal -->
+                <div class="modal fade modal-change" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Tạo Đơn Trả Hàng</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            
+                            <div class="container">
+                                <!-- thanh tieu de cua 2 modal -->
+                                <div class="MD-modal-paradigm row">
+                                    <div class="MD-paradigm-color col-xl-6">
+                                        <p class="MD-title-paradigm">1. Tim Don Hang</p>
+                                        <div class="MD-triangle"></div>
+                                    </div>
+                                    <div class="MD-paradigm col-xl-6">
+                                        <p class="MD-title-paradigm text-muted">2. Xu ly don hang</p>
+                                    </div>
+                                </div>
+        
+                                <div class="MD-modal-body mb-3" i>
+                                    <div class="frames-checkma row justify-content-center mt-2">
+                                        <input type="text" class="form-control col-xl-10" id="MD_maSP" placeholder="Ma Don Hang">
+                                        <button class="btn btn-primary col-xl-1 MD-btn-checkmasp" id="check_maSP">Kiem Tra</button>
+                                    </div>
+                                    <!-- thong tin tim kiem -->
+                                    <div id="modaldata"></div>
+                                    
+                                </div>
+                            </div>                               
+                            <!-- <div class="modal-footer">                                
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade modal-change" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Tạo Đơn Trả Hàng</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            
+                            <div class="container">
+                                <!-- thanh tieu de cua 2 modal -->
+                                <div class="MD-modal-paradigm row">
+                                    <div class="MD-paradigm-nocolor col-xl-6">
+                                        <p class="MD-title-paradigm text-muted">1. Tim Don Hang</p>
+                                        <div class="MD-triangle-nocolor"></div>
+                                    </div>
+                                    <div class="MD-paradigm-color col-xl-6">
+                                        <p class="MD-title-paradigm ">2. Xu ly don hang</p>
+                                    </div>
+                                </div>
+        
+                                <div class="MD-modal-body mb-3">
+                                    <div class="MD2-title-id d-flex justify-content-start mt-3 ml-2">
+                                        <h4>Don Hang :</h4>
+                                        <p class="MD2-dh-id ml-1">AH45-485</p>
+                                    </div>
+                                    <div class="MD2-frames-table">
+                                        <table style="width: 98%; margin-left: 1%; margin-bottom: 20px;">
+                                            <thead>
+                                                <tr class="MD2-tr">
+                                                    <th class="MD2-col1">STT</th>
+                                                    <th class="MD2-col2">Ten San Pham</th>
+                                                    <th class="MD2-col3">Gia</th>
+                                                    <th class="MD2-col4">So Luong</th>
+                                                    <th class="MD2-col5">Thanh Tien</th>
+                                                    <th class="MD2-col6">Tra Hang</th>
+                                                    <th class="MD2-col7">SL Tra</th>
+                                                    <th class="MD2-col8">Don Gia</th>
+                                                    <th class="MD2-col9">Thanh Tien</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="MD2-table">
+                                               <tr class="MD2-tr">
+                                                <td class="MD2-col1">1</td>
+                                                <td class="MD2-col2">Ten San Pham</td>
+                                                <td class="MD2-col3">100000</td>
+                                                <td class="MD2-col4">5</td>
+                                                <td class="MD2-col5">Thanh Tien</td>
+                                                <td class="MD2-col6">
+                                                    <input type="checkbox" >
+                                                </td>
+                                                <td class="MD2-col7">
+                                                    <input class="MD2-ip" type="number">                                                
+                                                </td>
+                                                <td class="MD2-col8">
+                                                    <input class="MD2-ip" type="text">
+                                                </td>
+                                                <td class="MD2-col9">200000</td>
+                                               </tr> 
+                                            </tbody>
+                                        </table>
+                                    </div>
+    
+                                    <div class="MD2-thanhtoan">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+
         </div>
     </div>
 
@@ -273,6 +391,9 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
     <script src="main.js"></script>
+    <script src="tablesort.js"></script>
+    <script src="doiHang.js"></script>
+
     <script>
         function ShowAllDataWareHouse(){
             $.ajax({url: "http://localhost:8080/admin/getAllProduct"})
@@ -319,6 +440,26 @@
     
 
     </script>
+    <script>
+        table = document.getElementById('sort');
+        new Tablesort(table);
+    </script>
+    <script>
+        $(document).ready(function(){
+          $("#inputSearchWarehouse").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#table tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
+    
+	<script>
+        
+
+    </script>
+    
 </body>
 
 </html>

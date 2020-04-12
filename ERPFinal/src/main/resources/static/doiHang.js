@@ -4,9 +4,10 @@
         $("#check_maSP").click(function check_maSP(){
             let ipMD_ma = document.getElementById("MD_maSP").value;
             let dateNow = new Date(); 
-            $.ajax({url :"http://localhost:8080/doiHang/getOneSalesByMa?license="+ipMD_ma})
+            $.ajax({url :"http://localhost:8080/sales/addToCart?maSP="+ipMD_ma})
                 .then(function(dataSale){
-                    if (ipMD_ma == dataSale.license) {
+                	
+                    if (ipMD_ma == dataSale.maSP) {
                         let modaldata = document.getElementById("modaldata")
                             modaldata.innerHTML="";
                             let contents = "";
@@ -38,7 +39,7 @@
                                             </div>
                                         </div>`;
                                 $(contents).appendTo(modaldata);                          
-                    }else if(ipMD_ma != dataSale.license){
+                    }else if(ipMD_ma != dataSale.maSP){
                         alert("Sorry ! Ma Hang Khong Ton Tai.")
                     }
                     
@@ -50,7 +51,7 @@
     //<!-- JS modal doi hang -->
     function clickmodal(){
         $("div[id^='myModal']").each(function(){
-            debugger;
+            
             var currentModal = $(this);
             //click next
             currentModal.find('.btn-next').click(function(){

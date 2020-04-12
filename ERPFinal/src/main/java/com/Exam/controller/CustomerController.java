@@ -1,6 +1,7 @@
 package com.Exam.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +17,9 @@ public class CustomerController {
 	
 //	Create customer
 	@RequestMapping(value = "/customer", method = RequestMethod.POST)
-	public boolean createCustomer(Customer customer) {
+	public boolean createCustomer(@RequestBody Customer customer) {
 		customerService.createCustomer(customer);
+		System.out.println(customer);
 		return true;
 	}
 }

@@ -195,7 +195,7 @@
                         </a>
                     </div>
 
-                    <a href="#" class="bg-dark list-group-item list-group-item-action">
+                    <a href="warehouse" class="bg-dark list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-calendar fa-fw mr-3"></span>
                             <span class="menu-collapsed">Kho hàng</span>
@@ -266,11 +266,11 @@
                                         <div class="d-flex flex-row">
                                             <input type="text" class="form-control" value=""
                                                 placeholder="Khách hàng" id="tenCT">
-                                            <input type="text" class="form-control" placeholder="Người đại diện" id="nguoiDaiDien">
+                                            <input type="number" class="form-control" placeholder="Năm Sinh" id="namSinh">
                                         </div>
                                         <div class="d-flex flex-row">
                                             <input type="text" class="form-control" placeholder="Email" id="email">
-                                            <input type="text" class="form-control" placeholder="Số thuế" id="soThue">
+                                            <input type="text" class="form-control" placeholder="Giới tính" id="gioiTinh">
                                         </div>
                                         <div class="d-flex flex-row">
                                             <input type="text" class="form-control"  placeholder="Điện thoại" id="phone">
@@ -354,22 +354,22 @@
                     <div class="total d-flex flex-row">
                         <form class="col-5">
                             <div class="form-group d-flex flex-row">
-                                <label class="col-form-label pd-0">Hình thức thanh toán:</label>
+                                <label class="col-form-label pd-0">Trạng thái thanh toán:</label>
                                 <div class="col-7">
                                     <select class="form-control-sm col-10" id="payments">
-                                        
+                                        <optionk></option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="form-group d-flex flex-row">
+                            <!-- <div class="form-group d-flex flex-row">
                                 <label class="col-form-label pd-0 mr-5">Khuyến mãi:</label>
                                 <div class="col-7 ml-4">
                                     <select class="form-control-sm col-10" id="discounts">
                                         
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </form>
                         <button type="button" class="btn-sm btn btn-dark mr-3" id="submit">Xác nhận</button>
@@ -455,22 +455,18 @@
 								}
 					})
 					
-				$.ajax({ url: "http://localhost:8080/showDiscounts" })
+				/* $.ajax({ url: "http://localhost:8080/showDiscounts" })
 					.then( function (data) {
 								document.getElementById("table").innerHTML = "";
-								/* console.log(data); */
+								console.log(data);
 								for (let i = 0; i < data.length; i++) {
 									var rows = "";
 									rows += "<option value=" +data[i].maKM+ ">" + data[i].tenKM + "</option>";
 									$(rows).appendTo("#discounts");
 								}
-					})
+					}) */
 			
 		});
-		
-		
-		
-		
 		
 		/* Function Add to  */
 		
@@ -525,22 +521,23 @@
 			$("#submit").click(function () {
 				
 				let company = {
-					"tenCT" : $("#tenCT").val(),
-					"nguoiDaiDien" : $("#nguoiDaiDien").val(),
-					"email" : $("#email").val(),
-					"soThue" : $("#soThue").val(),
-					"phone" : $("#phone").val(),
+					"tenKH" : $("#tenCT").val(),
 					"diaChi" : $("#diaChi").val(),
+					"phone" : $("#phone").val(),
+					"namSinh" : $("#namSinh").val(),
+					"email" : $("#email").val(),
+					"gioiTinh" : $("#gioiTinh").val(),
+					"maDonHang" : $("#license").val(),
 				}
 				
 				console.log(company)
 				
 				$.ajax({
-					url: "http://localhost:8080/company",
+					url: "http://localhost:8080/customer",
 					method: 'post', 
 					dataType: 'json',
 		            contentType: 'application/json',
-					data: JSON.stringify(company)
+					data: JSON.stringify(customer)
 				})
 			});
 		});

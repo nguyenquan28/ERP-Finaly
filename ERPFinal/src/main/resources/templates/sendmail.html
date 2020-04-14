@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-title" content="CodePen">
+   	
     <title>Medusa Shop</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="css/warehouse.css">
-    <link rel="stylesheet" href="css/modal-doihang.css">
+    <link rel="stylesheet" href="css/baogia.css">
 </head>
 
-<body onload="ShowAllDataWareHouse()">
+<body>
     <div class="container-fluid p-0">
 
         <!-- Header -->
@@ -191,7 +190,7 @@
 
                         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                             <span class="fa fa-refresh ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed" data-toggle="modal" data-target="#myModal1">Đổi hàng</span>
+                            <span class="menu-collapsed">Đổi hàng</span>
                         </a>
 
                         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
@@ -235,182 +234,99 @@
             </div>
             <!-- warehouse -->
             <div class="warehouse">
-                <div class="warehouse-path row">
-                    <div class=" col-md-4 mt-2">
-                        <a href="http://localhost:8080/">Bảng Điều Khiển</a>
-                        <span> / Warehouse</span>
-                    </div>
-                    <div class="col"></div>
-                    <div class="input-warehose col-md-4 row">
-                        <label for="text" class="col-lg-2 mt-1">Search:</label>
-                        <input type="text" class="form-control col-lg-6 ip-search-warehose" id="inputSearchWarehouse" placeholder="(*-*)">
-                        
-                    </div>
-                      
+                <div class="warehouse-path">
+                    <a href="http://localhost:8080/">Bảng Điều Khiển</a>
+                    <span> /Báo giá</span>   
                 </div>
-                
-                <div class="warehouse-show mt-2">
-                    <table style="width: 100%;" id="sort">
-                        <thead>
-                            <tr class="row title">
-                                <th class="col">Id</th>
-                                <th class="col">Name Product</th>
-                                <th class="col">Price</th>
-                                <th class="col">Unit</th>
-                                <th class="col">Amount</th>
-                                <th class="col">Size</th>
-                                <th class="col">Classify</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table">
-                            
-                        </tbody>
-                    </table>
+                <div class="warehouse-search mt-1">
+                    <div class="input-warehose col-lg-4">
+                        <input type="text" class="form-control col-lg-8 ip-search-warehose" id="inputSearchWarehouse" placeholder="Enter Name Product">
+                        <button type="button" class="btn-warehose btn btn-primary col-lg-2" id="searchWarehouse">Enter</button>
+                    </div>
                     
                 </div>
+                 <div class="baogia d-flex">
+                    <div class="warehouse-show table-1 mt-2">
+                        <h4 class="text text-center">Lựa chọn sản phẩm</h4>
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Đơn Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="products">
+                               <th:block th:each="product : ${products}">
+                               	<tr>
+                               		<td> <p th:text="${product.maSP}" th:id="productId"> </p></td>
+                               		<td> <p th:text="${product.tenSP}" th:id="productName"></p></td>
+                               		<td> <p th:text="${product.donGia}" th:id="price"></p> </td>
+                               		<td> <input th:class="form-control" th:id="amount" style="width: 80px" type="number" th:min=0 th:value=1 > </td>
+                               		<td> <p th:text="${product.donGia}" th:id="sum"></p> </td>
+                               		<td><input class="form-control checkBox-product " id="checkBox-product" type="checkbox" onclick="check(this.id)" th:value="${product.maSP}"  ></td>
+                               	</tr>
+                               </th:block>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><div class="form-group form-inline">
+                                        <span for=""><input class="form-control"  onclick="check(this.id)" id="checkAll-product"  type="checkbox"  >Chọn tất cả</label>
+                                    </div></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        
+                            
+                       
+                       
+                    </div>
+                    <div class="warehouse-show table-2 mt-2">
+                        <h4 class="text text-center">Lựa chọn khách hàng</h4>
+                        <table class="table table-border" >
+                            <thead>
+                                
+                                    <tr><th class="">ID</th>
+                                        <th class="">Tên khách hàng</th>
+                                        <th class="">Email</th>
+                                        
+                                        <th class=""></th></tr>
+                              
+                            </thead>
+                            <tbody id="customers">
+                                <th:block th:each="customer : ${customers}">
+                               	<tr>
+                               		<td> <p  th:text="${customer.maKH}" th:id="customerId"></p> </td>
+                               		<td><p th:text="${customer.tenKH}" th:id="customerName"></p></td>
+                               		<td><p  th:text="${customer.email}"th:id="email"></p></td>
+                               		
+                               		<td><input class="form-control checkBox-customer" id="checkBox-customer" onclick="check(this.id)" type="checkbox"  th:value="${customer.maKH}"  ></td>
+                               	</tr>
+                               </th:block>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><div class="form-group form-inline">
+                                        <span for=""><input class="form-control" id="checkAll-customer" onclick="check(this.id)" type="checkbox" value="1" name="123" >Chọn tất cả</label>
+                                    </div></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button class="btn btn-primary" id="send-mail">Xác nhận gởi mail</button>
+                    </div>
+
+                </div>
             </div>
-
-            <!-- Model đổi hàng -->
-                <!-- Modal -->
-                <div class="modal fade modal-change" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Tạo Đơn Trả Hàng</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            
-                            <div class="container">
-                                <!-- thanh tieu de cua 2 modal -->
-                                <div class="MD-modal-paradigm row">
-                                    <div class="MD-paradigm-color col-xl-6">
-                                        <p class="MD-title-paradigm">1. Tim Don Hang</p>
-                                        <div class="MD-triangle"></div>
-                                    </div>
-                                    <div class="MD-paradigm col-xl-6">
-                                        <p class="MD-title-paradigm text-muted">2. Xu ly don hang</p>
-                                    </div>
-                                </div>
-        
-                                <div class="MD-modal-body mb-3" i>
-                                    <div class="frames-checkma row justify-content-center mt-2">
-                                        <input type="text" class="form-control col-xl-10" id="MD_maSP" placeholder="Ma Don Hang">
-                                        <button class="btn btn-primary col-xl-1 MD-btn-checkmasp" id="check_maSP">Kiem Tra</button>
-                                    </div>
-                                    <!-- thong tin tim kiem -->
-                                    <div id="modaldata"></div>
-                                    
-                                </div>
-                            </div>                               
-                            <!-- <div class="modal-footer">                                
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade modal-change" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Tạo Đơn Trả Hàng</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            
-                            <div class="container">
-                                <!-- thanh tieu de cua 2 modal -->
-                                <div class="MD-modal-paradigm row">
-                                    <div class="MD-paradigm-nocolor col-xl-6">
-                                        <p class="MD-title-paradigm text-muted">1. Tim Don Hang</p>
-                                        <div class="MD-triangle-nocolor"></div>
-                                    </div>
-                                    <div class="MD-paradigm-color col-xl-6">
-                                        <p class="MD-title-paradigm ">2. Xu ly don hang</p>
-                                    </div>
-                                </div>
-        
-                                <div class="MD-modal-body mb-3">
-                                    <div class="MD2-title-id d-flex justify-content-start mt-3 ml-2">
-                                        <h4>Don Hang :</h4>
-                                        <p class="MD2-dh-id ml-1">AH45-485</p>
-                                    </div>
-                                    <div class="MD2-frames-table">
-                                        <table style="width: 98%; margin-left: 1%; margin-bottom: 20px;">
-                                            <thead>
-                                                <tr class="MD2-tr">
-                                                    <th class="MD2-col1">STT</th>
-                                                    <th class="MD2-col2">Ten San Pham</th>
-                                                    <th class="MD2-col3">Gia</th>
-                                                    <th class="MD2-col4">So Luong</th>
-                                                    <th class="MD2-col5">Thanh Tien</th>
-                                                    <th class="MD2-col6">Tra Hang</th>
-                                                    <th class="MD2-col7">SL Tra</th>
-                                                    <th class="MD2-col8">Don Gia</th>
-                                                    <th class="MD2-col9">Thanh Tien</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="MD2-table">
-                                               <tr class="MD2-tr">
-                                                <td class="MD2-col1">1</td>
-                                                <td class="MD2-col2">Ten San Pham</td>
-                                                <td class="MD2-col3">100000</td>
-                                                <td class="MD2-col4">5</td>
-                                                <td class="MD2-col5">Thanh Tien</td>
-                                                <td class="MD2-col6">
-                                                    <input type="checkbox" >
-                                                </td>
-                                                <td class="MD2-col7">
-                                                    <input class="MD2-ip" type="number">                                                
-                                                </td>
-                                                <td class="MD2-col8">
-                                                    <input class="MD2-ip" type="text">
-                                                </td>
-                                                <td class="MD2-col9">200000</td>
-                                               </tr> 
-                                            </tbody>
-                                        </table>
-                                    </div>
-    
-                                    <div class="MD2-thanhtoan row">
-                                        <div class="col-xl-5"></div>
-                                        <div class="col-xl-7 row">
-                                            <div class="col-md-5 row">
-                                            	<div class="MD2-rowname col-sm-7">
-                                                    <p>Tong tien:</p>
-                                                    <p>Giam gia:</p>
-                                                    <p>Thue:</p>
-                                                    <p>Phi van chuyen:</p>
-                                                    <p><strong>Thanh tien:</strong></p>
-                                                </div>
-                                            	<div class="MD2-rowkq col-sm-5">
-                                            		<p>10000000</p>
-                                            		<p>10000000</p>
-                                            		<p>10000000</p>
-                                            		<p>10000000</p>
-                                            		<p>10000000</p>
-                                            	</div>
-                                            </div>
-                                            <div class="col-md-7 row">                                         
-                                            	<div class="col-sm-5 d-flex">
-                                            		<p>Tong SL tra : </p>
-                                            		<p> 100</p>
-                                            	</div>
-                                            	<div class="col-sm-7 d-flex">
-                                            		<p>Tong tien tra : </p>
-                                            		<p> 100000</p>
-                                            	</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-
-
         </div>
     </div>
 
@@ -419,35 +335,52 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
     <script src="main.js"></script>
-    <script src="tablesort.js"></script>
-    <script src="doiHang.js"></script>
-
     <script>
-        function ShowAllDataWareHouse(){
-            $.ajax({url: "http://localhost:8080/admin/getAllProduct"})
-                .then(function(datawarehouse){
-                    ShowDataProduct(datawarehouse);
-                })
-        }
-        function ShowDataProduct(dataProduct){
-            let table = document.getElementById("table");
-                table.innerHTML = "";
-                    for (let i = 0; i < dataProduct.length; i++) {
-                    let contents = "";
-                        contents +=`
-                            <tr class="row">
-                                <td class="col">${dataProduct[i].maSP}</td>
-                                <td class="col">${dataProduct[i].tenSP}</td>
-                                <td class="col">${dataProduct[i].donGia}</td>
-                                <td class="col">${dataProduct[i].donVi}</td>
-                                <td class="col">${dataProduct[i].soLuong}</td>                                
-                                <td class="col">${dataProduct[i].size}</td> 
-                                <td class="col">${dataProduct[i].phanLoai}</td>
-                            </tr>`;
-                        $(contents).appendTo(table);    
-                    }
-        }
+        
+       
+    let productCheckboxs = document.querySelectorAll("#checkBox-product")
+	let customerCheckboxs = document.querySelectorAll("#checkBox-customer")
+	let productIds = document.querySelectorAll("#productId")
+	let productNames = document.querySelectorAll("#productName")
+	let amounts = document.querySelectorAll("#amount")
+	let sums = document.querySelectorAll("#sum")
+	let prices = document.querySelectorAll("#price")
+	
+	
+    let customerIds = document.querySelectorAll("#customerId")
+    let customerNames = document.querySelectorAll("#customerName")
+    let emails = document.querySelectorAll("#email")
+   
+        	function check(id){
+            		let checkBox = document.getElementById(id);           		
+            		if(id=="checkAll-customer" || id=="checkAll-product"){
+                		if(id=="checkAll-product"){
+                			if(checkBox.checked){
+                				productCheckboxs.forEach(i => i.checked=true)  
+                				
+                			}else{               				
+                				productCheckboxs.forEach(i=>i.checked=false)
+                			}
+                		}else{
+                			if(checkBox.checked){
+                				customerCheckboxs.forEach(i=>i.checked=true)                				
+                			}else{
+                				customerCheckboxs.forEach(i=>i.checked=false)
+                			}
+                		}
+                	}else{
+                		if(id=="checkBox-product"){
+                			 document.getElementById("checkAll-product").checked=false;
+                		}else{
+                			 document.getElementById("checkAll-customer").checked=false;
+                		}
+                	}
+                } 
+    
+    
+        
     $(document).ready(function(){
+    	
         $("#searchWarehouse").click(function search(){
             let ipsearch = document.getElementById("inputSearchWarehouse").value;
             if(ipsearch == ""){
@@ -462,32 +395,89 @@
                     })
             }
         })
-
-    })
-
-    
-
-    </script>
-    <script>
-        table = document.getElementById('sort');
-        new Tablesort(table);
-    </script>
-    <script>
-        $(document).ready(function(){
-          $("#inputSearchWarehouse").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#table tr").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-          });
-        });
-    </script>
-    
-	<script>
         
-
+        for(let i = 0 ; i < amounts.length;i++){
+        	amounts[i].addEventListener('change',function(){      
+        			
+        			sums[i].innerHTML = amounts[i].value * prices[i].textContent
+        			
+        			
+        	})
+        }
+        $("#send-mail").click(function(){
+        	let productsSelected=[];
+        	let customersSelected=[];
+        	for(let i=0; i < productCheckboxs.length;i++){
+        		if(productCheckboxs[i].checked == true){
+        			let product={}
+        			product.id=productIds[i].textContent
+        			product.name=productNames[i].textContent
+        			product.amount=amounts[i].value
+        			product.price=prices[i].textContent
+        			product.sum=sums[i].textContent
+        			productsSelected.push(product)
+        			
+        		}
+        	}
+        	
+        	for(let i=0; i < customerCheckboxs.length;i++){
+        		if(customerCheckboxs[i].checked == true){
+        			let customer={}
+        			customer.id=customerIds[i].textContent
+        			customer.name=customerNames[i].textContent
+        			customer.email=emails[i].textContent
+        			
+        			customersSelected.push(customer)
+        			
+        		}
+        	}
+        	
+        	if( productsSelected.length==0 &&  customersSelected.length ==0 ){
+        		alert('Vui lòng chọn sản phẩm và khách hàng!!!')
+        	}else if(productsSelected.length !=0 &&  customersSelected.length ==0){
+        		alert('Vui lòng chọn khách hàng!!!')
+        	}else if(productsSelected.length==0 &&  customersSelected.length !=0){
+        		alert('Vui lòng chọn sản phẩm!!!')
+        	}
+        	else{
+        		$.ajax({
+            		type:"post",
+            		url:"http://localhost:8080/api/send-mail/prepare-product",
+            		contentType:"application/json",
+            		data :JSON.stringify(productsSelected),
+            		success:function(){
+            			$.ajax({
+                    		type:"post",
+                    		url:"http://localhost:8080/api/send-mail/prepare-customer",
+                    		contentType:"application/json",
+                    		data :JSON.stringify(customersSelected),
+                    		success:function(){
+                    			console.log("success")
+                    		}
+                    	})
+            		}
+            	})
+            	
+        	}
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        })
+        
+        
+	
+    })    
+		
+		
+	
+    	
+		
+		
     </script>
-    
 </body>
 
 </html>

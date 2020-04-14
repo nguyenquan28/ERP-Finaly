@@ -11,11 +11,11 @@ import com.Exam.Entity.Employee;
 import com.Exam.Entity.Payment;
 import com.Exam.Entity.SalesCode;
 import com.Exam.Entity.Store;
-import com.Exam.Service.DiscountService;
-import com.Exam.Service.EmployeeService;
-import com.Exam.Service.PaymentService;
-import com.Exam.Service.SalesCodeService;
-import com.Exam.Service.StoreService;
+import com.Exam.service.DiscountService;
+import com.Exam.service.EmployeeService;
+import com.Exam.service.PaymentService;
+import com.Exam.service.SalesCodeService;
+import com.Exam.service.StoreService;
 
 @RestController
 public class ShowInfoShopController {

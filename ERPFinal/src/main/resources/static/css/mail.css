@@ -1,0 +1,28 @@
+@charset "ISO-8859-1";
+
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.table ,th,td{
+   
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+.table {
+    width: 70%;
+    
+}
+.text{
+   
+    margin-left: 225px;
+    
+}
+.footer{
+    float: right;
+    margin-right: 260px;
+}

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -266,11 +267,11 @@
                                         <div class="d-flex flex-row">
                                             <input type="text" class="form-control" value=""
                                                 placeholder="Khách hàng" id="tenCT">
-                                            <input type="text" class="form-control" placeholder="Người đại diện" id="nguoiDaiDien">
+                                           
                                         </div>
                                         <div class="d-flex flex-row">
                                             <input type="text" class="form-control" placeholder="Email" id="email">
-                                            <input type="text" class="form-control" placeholder="Số thuế" id="soThue">
+                                            
                                         </div>
                                         <div class="d-flex flex-row">
                                             <input type="text" class="form-control"  placeholder="Điện thoại" id="phone">
@@ -291,14 +292,16 @@
                                     <label class="col-sm-3 col-form-label ml-4">Nhân viên bán: </label>
                                     <div class="col-8">
                                         <select class="form-control" id="employees">
-                                           
+                                           <option value="A">A</option>
+                                           <option value="B">B</option>
                                         </select>
                                     </div>
 
                                     <label class="col-sm-3 col-form-label ml-4">Tên cửa hàng: </label>
                                     <div class="col-8">
                                         <select class="form-control" id="stores">
-                                            
+                                            <option value="Cửa hàng A">Cửa hàng A</option>
+                                           <option value="Cửa hàng B">Cửa hàng B</option>
                                         </select>
                                     </div>
 
@@ -346,7 +349,22 @@
                             </tr>
                         </thead>
                         <tbody id="table">
-
+                            <tr>
+                                <td>1</td>
+                                <td>Quần</td>
+                                <td>Đơn vị x</td>
+                                <td>200</td>
+                                <td>5</td>
+                                <td>100</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Áo</td>
+                                <td>Đơn vị y</td>
+                                <td>200</td>
+                                <td>5</td>
+                                <td>100</td>
+                            </tr>
                         </tbody>
                     </table>
                     <hr>
@@ -357,7 +375,9 @@
                                 <label class="col-form-label pd-0">Hình thức thanh toán:</label>
                                 <div class="col-7">
                                     <select class="form-control-sm col-10" id="payments">
-                                        
+                                        <option value="1">Hình thước thanh toán 1</option>
+                                        <option value="2">Hình thước thanh toán 2</option>
+                                        <option value="3">Thanh Toán khi nhận hàng</option>
                                     </select>
                                 </div>
                             </div>
@@ -366,10 +386,13 @@
                                 <label class="col-form-label pd-0 mr-5">Khuyến mãi:</label>
                                 <div class="col-7 ml-4">
                                     <select class="form-control-sm col-10" id="discounts">
-                                        
+                                        <option value="10">10%</option>
+                                        <option value="20">20%</option>
+                                        <option value="50">50%</option>
                                     </select>
                                 </div>
                             </div>
+                            
 
                         </form>
                         <button type="button" class="btn-sm btn btn-dark mr-3" id="submit">Xác nhận</button>
@@ -381,7 +404,7 @@
                             </div>
                             <div class="Sum d-flex flex-row">
                                 <h6>Khuyến mãi: </h6>
-                                <p id="" class="ml-2">000</p>
+                                <p id="s" class="ml-2">000</p>
                             </div>
                             <div class="Sum d-flex flex-row">
                                 <h6>Tổng tiền: </h6>
@@ -389,7 +412,7 @@
                             </div>
                         </div>
 
-                            <button type="button" class="btn-sm btn btn-dark mr-5 mb-3">Thanh toán</button>
+                            <button type="button" class="btn-sm btn btn-dark mr-5 mb-3" id="pay">Thanh toán</button>
                             <button type="button" class="btn-sm btn btn-dark mr-5">In hóa đơn</button>
                     </div>
 
@@ -409,64 +432,64 @@
     <script>
 	
 		/* Function show data */
-		$(document).ready(function () {
+		// $(document).ready(function () {
 				
-				$.ajax({ url: "http://localhost:8080/showEmployees" })
-					.then( function (data) {
-								document.getElementById("table").innerHTML = "";
-								/* console.log(data); */
-								for (let i = 0; i < data.length; i++) {
-									var rows = "";
-									rows += "<option>" + data[i].tenNhanVien + "</option>";
-									$(rows).appendTo("#employees");
-								}
-					})
+		// 		$.ajax({ url: "http://localhost:8080/showEmployees" })
+		// 			.then( function (data) {
+		// 						document.getElementById("table").innerHTML = "";
+		// 						/* console.log(data); */
+		// 						for (let i = 0; i < data.length; i++) {
+		// 							var rows = "";
+		// 							rows += "<option>" + data[i].tenNhanVien + "</option>";
+		// 							$(rows).appendTo("#employees");
+		// 						}
+		// 			})
 					
-				$.ajax({ url: "http://localhost:8080/showSalecodes" })
-					.then( function (data) {
-								document.getElementById("table").innerHTML = "";
-								/* console.log(data); */
-								for (let i = 0; i < data.length; i++) {
-									var rows = "";
-									rows += "<option>" + data[i].tenMaCa + "</option>";
-									$(rows).appendTo("#salecodes");
-								}
-					})
+		// 		$.ajax({ url: "http://localhost:8080/showSalecodes" })
+		// 			.then( function (data) {
+		// 						document.getElementById("table").innerHTML = "";
+		// 						/* console.log(data); */
+		// 						for (let i = 0; i < data.length; i++) {
+		// 							var rows = "";
+		// 							rows += "<option>" + data[i].tenMaCa + "</option>";
+		// 							$(rows).appendTo("#salecodes");
+		// 						}
+		// 			})
 					
-				$.ajax({ url: "http://localhost:8080/showStores" })
-					.then( function (data) {
-								document.getElementById("table").innerHTML = "";
-								/* console.log(data); */
-								for (let i = 0; i < data.length; i++) {
-									var rows = "";
-									rows += "<option>" + data[i].tenCuaHang + "</option>";
-									$(rows).appendTo("#stores");
-								}
-					})
+		// 		$.ajax({ url: "http://localhost:8080/showStores" })
+		// 			.then( function (data) {
+		// 						document.getElementById("table").innerHTML = "";
+		// 						/* console.log(data); */
+		// 						for (let i = 0; i < data.length; i++) {
+		// 							var rows = "";
+		// 							rows += "<option>" + data[i].tenCuaHang + "</option>";
+		// 							$(rows).appendTo("#stores");
+		// 						}
+		// 			})
 					
-				$.ajax({ url: "http://localhost:8080/showPayments" })
-					.then( function (data) {
-								document.getElementById("table").innerHTML = "";
-								/* console.log(data); */
-								for (let i = 0; i < data.length; i++) {
-									var rows = "";
-									rows += "<option>" + data[i].tenHTTT + "</option>";
-									$(rows).appendTo("#payments");
-								}
-					})
+		// 		$.ajax({ url: "http://localhost:8080/showPayments" })
+		// 			.then( function (data) {
+		// 						document.getElementById("table").innerHTML = "";
+		// 						/* console.log(data); */
+		// 						for (let i = 0; i < data.length; i++) {
+		// 							var rows = "";
+		// 							rows += "<option>" + data[i].tenHTTT + "</option>";
+		// 							$(rows).appendTo("#payments");
+		// 						}
+		// 			})
 					
-				$.ajax({ url: "http://localhost:8080/showDiscounts" })
-					.then( function (data) {
-								document.getElementById("table").innerHTML = "";
-								/* console.log(data); */
-								for (let i = 0; i < data.length; i++) {
-									var rows = "";
-									rows += "<option value=" +data[i].maKM+ ">" + data[i].tenKM + "</option>";
-									$(rows).appendTo("#discounts");
-								}
-					})
+		// 		$.ajax({ url: "http://localhost:8080/showDiscounts" })
+		// 			.then( function (data) {
+		// 						document.getElementById("table").innerHTML = "";
+		// 						/* console.log(data); */
+		// 						for (let i = 0; i < data.length; i++) {
+		// 							var rows = "";
+		// 							rows += "<option value=" +data[i].maKM+ ">" + data[i].tenKM + "</option>";
+		// 							$(rows).appendTo("#discounts");
+		// 						}
+		// 			})
 			
-		});
+		// });
 		
 		
 		
@@ -475,102 +498,161 @@
 		/* Function Add to  */
 		
 		/* Function save Product to Cart */
-		$(document).ready(function () {
-			$("#create").click(function () {
+		// $(document).ready(function () {
+		// 	$("#create").click(function () {
 	
-				$.ajax({ url: "http://localhost:8080/sales/addToCart?maSP=" + $("#inputID").val() })
-					.then(function (product) {
+		// 		$.ajax({ url: "http://localhost:8080/sales/addToCart?maSP=" + $("#inputID").val() })
+		// 			.then(function (product) {
                         
-						var rows = "";
-						rows += "<tr><td>" + product.maSP
-							+ "</td><td>" + product.tenSP
-							+ "</td><td>" + product.donVi
-							+ "</td><td>" + product.donGia
-							+ "</td><td>" + $("#amounts").val()
-							+ "</td><td>" + product.donGia*$("#amounts").val()
-							+ "</td></tr>";
-						$(rows).appendTo("#table");
-						$("#amounts").html()
-						$("#inputID").html()
-						/* Save carts */
-						let maGioHang = 2
-						let cart = {
-							"license" : $("#license").val(),
-							"maSP" : product.maSP,
-							"soLuong" : $("#amounts").val(),
-							"donGia" : $("#amounts").val(),
-							"phanLoai" : product.phanLoai,
-							"donVi" : product.donVi,
-							"ngaySanXuat" : product.ngaySanXuat,
-							"hanSuDung" : product.hanSuDung,
-							"tenSP" : product.tenSP,	
-							"tongTien" : product.donGia*$("#amounts").val()
-						}
+		// 				var rows = "";
+		// 				rows += "<tr><td>" + product.maSP
+		// 					+ "</td><td>" + product.tenSP
+		// 					+ "</td><td>" + product.donVi
+		// 					+ "</td><td>" + product.donGia
+		// 					+ "</td><td>" + $("#amounts").val()
+		// 					+ "</td><td>" + product.donGia*$("#amounts").val()
+		// 					+ "</td></tr>";
+		// 				$(rows).appendTo("#table");
+		// 				$("#amounts").html()
+		// 				$("#inputID").html()
+		// 				/* Save carts */
+		// 				let maGioHang = 2
+		// 				let cart = {
+		// 					"license" : $("#license").val(),
+		// 					"maSP" : product.maSP,
+		// 					"soLuong" : $("#amounts").val(),
+		// 					"donGia" : $("#amounts").val(),
+		// 					"phanLoai" : product.phanLoai,
+		// 					"donVi" : product.donVi,
+		// 					"ngaySanXuat" : product.ngaySanXuat,
+		// 					"hanSuDung" : product.hanSuDung,
+		// 					"tenSP" : product.tenSP,	
+		// 					"tongTien" : product.donGia*$("#amounts").val()
+		// 				}
 						
-						console.log(cart)
-						$.ajax({
-							url: "http://localhost:8080/sales/insertCart",
-							method: 'post', 
-							dataType: 'json',
-				            contentType: 'application/json',
-							data: JSON.stringify(cart)
-						})
+		// 				console.log(cart)
+		// 				$.ajax({
+		// 					url: "http://localhost:8080/sales/insertCart",
+		// 					method: 'post', 
+		// 					dataType: 'json',
+		// 		            contentType: 'application/json',
+		// 					data: JSON.stringify(cart)
+		// 				})
 						
-				})
-			});
-		});
+		// 		})
+		// 	});
+		// });
 		
 		/* Function save Company partner */
 		$(document).ready(function () {
-			$("#submit").click(function () {
-				
-				let company = {
-					"tenCT" : $("#tenCT").val(),
-					"nguoiDaiDien" : $("#nguoiDaiDien").val(),
-					"email" : $("#email").val(),
-					"soThue" : $("#soThue").val(),
-					"phone" : $("#phone").val(),
-					"diaChi" : $("#diaChi").val(),
-				}
-				
-				console.log(company)
-				
-				$.ajax({
-					url: "http://localhost:8080/company",
-					method: 'post', 
-					dataType: 'json',
-		            contentType: 'application/json',
-					data: JSON.stringify(company)
-				})
+            let thanhTien=0;
+            let orderItems = []
+                let tb = document.getElementById("table")
+                let  rowSize = tb.rows.length
+                for(let i = 0 ; i < rowSize ; i++){
+                    let cell = tb.rows.item(i).cells;
+
+                    
+                        let orderItem = {}
+                        let product = {}
+                        product.maSP = cell.item(0).innerHTML
+                        product.tenSP = cell.item(1).innerHTML
+                        product.donVi = cell.item(2).innerHTML
+                        product.donGia = cell.item(3).innerHTML
+                        orderItem.product=product;
+                        orderItem.soLuong = cell.item(4).innerHTML
+                        orderItem.thanhtien = cell.item(5).innerHTML
+                        thanhTien += (parseInt(orderItem.thanhtien))
+                        orderItems.push(orderItem)
+                   
+                }
+                
+            
+            
+			$("#submit").click(function () {								
+                
+				let khuyenMai = $("#discounts").children("option:selected").val()
+	            let tongTien = thanhTien - (thanhTien/100*khuyenMai)
+                document.getElementById("sum").innerText=thanhTien
+                document.getElementById("s").innerText=khuyenMai+"%"
+                document.getElementById("total").innerText=tongTien               
+				// $.ajax({
+				// 	url: "http://localhost:8080/company",
+				// 	method: 'post', 
+				// 	dataType: 'json',
+		        //     contentType: 'application/json',
+				// 	data: JSON.stringify(company)
+				// })
 			});
+
+            $("#pay").click(function(){
+                let ngay = new Date().getDate()+"/"+(new Date().getUTCMonth()+1)+"/"+ new Date().getFullYear()
+               
+				let tenKH = $("#tenCT").val()				
+				let email = $("#email").val()				
+				let phone = $("#phone").val()
+				let diaChi =  $("#diaChi").val()												
+				let tenNguoiBan = $("#employees").children("option:selected").val()
+                let cuaHang = $("#stores").children("option:selected").val()                                                           
+                let trangThai ="";
+                let payment = $("#payments").children("option:selected").val()
+                let tongTien = parseInt(document.getElementById("total").textContent);
+                if(payment == 3){
+                    trangThai ="Chưa thanh toán"
+                }else{
+                    trangThai = "Đã thanh toán"
+                }
+                let order = {};
+                order.ngay=ngay;
+                order.tenKH = tenKH;
+                order.email=email;
+                order.phone=phone;
+                order.diaChi=diaChi;
+                order.tenNguoiBan=tenNguoiBan;
+                order.cuaHang=cuaHang;
+                order.trangThai=trangThai;
+                order.orderItems=orderItems
+                order.tongTien = tongTien;
+                console.log(order)
+
+                $.ajax({
+                    url:"http://localhost:8080/api/them-don-hang",
+                    data:JSON.stringify(order),
+                    method:"post",
+                    contentType: 'application/json',
+                    success:function(data){
+                        alert(data)
+                    }
+                })
+            })
 		});
 		
 		/* Show all product in cart by ID sale */
-		$(document).ready(function () {
-			$("#submit").click(function () {	
-				var sum = 0;			
-				$.ajax({ url: "http://localhost:8080/sales/showCart?license=" + $("#license").val() })
-					.then(function (data) {
-						for (let i = 0; i < data.length; i++) {
-							console.log(data[i].tongTien)
-							sum +=  data[i].tongTien
-						}
-						console.log(sum)
-						$("#sum").html(sum)
-					})
+		// $(document).ready(function () {
+		// 	$("#submit").click(function () {	
+		// 		var sum = 0;			
+		// 		$.ajax({ url: "http://localhost:8080/sales/showCart?license=" + $("#license").val() })
+		// 			.then(function (data) {
+		// 				for (let i = 0; i < data.length; i++) {
+		// 					console.log(data[i].tongTien)
+		// 					sum +=  data[i].tongTien
+		// 				}
+		// 				console.log(sum)
+		// 				$("#sum").html(sum)
+		// 			})
 					
-				$.ajax({ url: "http://localhost:8080/sales/discounts?maKM=" + $("#discounts").val() })
-					.then(function (data) {
-						console.log(data)
-						console.log(data.phanTramKM)
-						console.log(sum)
-						console.log(parseInt($("#sum").val()))
-						console.log(data.phanTramKM * $("#sum").val())
-						let Discount = data.phanTramKM * $("#sum").val()
-						console.log(Discount)
-					})
-			});
-		});
+		// 		$.ajax({ url: "http://localhost:8080/sales/discounts?maKM=" + $("#discounts").val() })
+		// 			.then(function (data) {
+		// 				console.log(data)
+		// 				console.log(data.phanTramKM)
+		// 				console.log(sum)
+		// 				console.log(parseInt($("#sum").val()))
+		// 				console.log(data.phanTramKM * $("#sum").val())
+		// 				let Discount = data.phanTramKM * $("#sum").val()
+		// 				console.log(Discount)
+		// 			})
+		// 	});
+		// });
 		
 		
 		
@@ -581,3 +663,4 @@
 </body>
 
 </html>
+

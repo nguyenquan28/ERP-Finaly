@@ -1,4 +1,6 @@
-package com.Exam.Service;
+package com.Exam.service;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,15 +8,11 @@ import org.springframework.stereotype.Service;
 import com.Exam.DAO.CustomerDAO;
 import com.Exam.Entity.Customer;
 
-@Service
-public class CustomerService {
+
+public interface CustomerService {
+
+	public List<Customer>findAll ();
 	
-	@Autowired
-	CustomerDAO customerDAO;
-	
-//	Create information Customer
-	public boolean createCustomer(Customer customer) {
-		customerDAO.save(customer);
-		return true;
-	}
+	public List<Customer>getCustomerByListId(List<Integer>ids);
 }
+

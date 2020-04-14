@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet'  href="css/mail.css">
+    
+    <style type="text/css">
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+table ,th,td{
+   
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+.table {
+    width: 70%;
+    
+}
+.text{
+   
+    
+    
+}
+.footer{
+    float: right;
+    
+}
+    </style>
+    
+</head>
+
+<body>
+
+		
+   <div class="box container" >
+            <div class="box-logo">
+                <img src="images/logomedusa.png" alt="" srcset="" style="width: 200px;height: 60px;">
+            </div>
+            
+        </div>
+        <div class="box title" >
+            <h1>Bảng báo giá sản phẩm</h1>
+        </div>
+        <div style="display: flex">
+        	Kính gởi khách hàng : <p th:text="${customerName}"></p>
+        </div>
+        <div class="box box-table">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>Mã sản phẩm </th>
+                      <th>Tên sản phẩm</th>
+                      <th>Số lượng</th>
+                      <th>Đơn giá</th>
+                      <th>Thành tiền</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  
+                  
+					<th:block th:each="product : ${products}">
+					<tr>
+						<td th:text="${product.id}"></td>
+						<td th:text="${product.name}"></td>
+						<td th:text="${product.price}"></td>
+						<td th:text="${product.amount}"></td>
+						<td th:text="${product.sum}"></td>
+					</tr>
+					
+					
+				</th:block>
+					<tr>
+						<td colspan="4">Tổng cộng</td>
+						<td th:text="${sum}" ></td>
+					</tr>
+                  
+                  <tr>
+                    <td colspan="1" style="text-align: left;">Bằng chữ </td>
+                   	<td colspan="4" th:text="${tongsotien}"></td>
+                </tr>
+                
+              </tbody>
+          </table>
+        </div>
+        <div class="text">
+            <strong style="color:red">Ghi chú : </strong>
+            <p>- Giá trên chưa bao gồm 10% thuế VAT</p>
+            <p>Mọi chi tiết xin liên hệ :</p>
+            <p>Mr <strong>Nguyễn Văn Quân</strong>&nbsp;&nbsp;&nbsp;&nbsp;Phone: <strong>0123456789</strong>&nbsp;&nbsp;&nbsp;&nbsp;Email: <Strong>nguyenvanquan@gmail.com</Strong></p>
+        </div>
+        <div class="footer">
+           <span > Đà Nẵng,ngày ..., tháng ... , năm... </span>
+            <h4 >Giám đốc</h4>
+            <p >...</p>
+        </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+@charset "ISO-8859-1";
+.warehouse{
+    width: calc(100% - 230px);
+    height: 100vh;
+    background: rgb(242, 241, 241);
+   
+}
+.warehouse-path{
+    width: 100%;
+    line-height: 2.1;
+    padding-left: 30px;
+    height: 40px;
+    font-size: 18px;
+    background: #fff;
+}
+.warehouse-search{
+    width: 100%;
+    height: 70px;
+    background: #fff;
+}
+.input-warehose{
+    padding: 11px 0 11px 26px;
+}
+.input-warehose .ip-search-warehose{
+    float: left;
+}
+.input-warehose .btn-warehose{
+    margin-top: 5.5px;
+    width: 75px;
+    margin-left: 12px;
+}
+.warehouse-show{
+    width: 49%;
+    height: auto;
+    padding: 10px 10px;
+    background: #fff;
+    margin-left: 10px;
+}
+.baogia{
+    width: 100%;
+    height: auto;
+}
+td,th{
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	
+}
+

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Exam.Entity.Customer;
-import com.Exam.Service.CustomerService;
+import com.Exam.service.CustomerService;
 
 @RestController
 @RequestMapping("/customer")

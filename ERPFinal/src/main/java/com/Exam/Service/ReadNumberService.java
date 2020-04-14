@@ -1,4 +1,4 @@
-package com.Exam.Service;
+package com.Exam.service;
 
 public interface ReadNumberService {
 		

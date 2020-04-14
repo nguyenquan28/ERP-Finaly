@@ -1,4 +1,4 @@
-package com.Exam.Service;
+package com.Exam.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

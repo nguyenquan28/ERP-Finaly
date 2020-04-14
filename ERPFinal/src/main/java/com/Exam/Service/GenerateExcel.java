@@ -1,4 +1,4 @@
-package com.Exam.Service;
+package com.Exam.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Exam.Entity.Discount;
-import com.Exam.Service.DiscountService;
+import com.Exam.service.DiscountService;
 
 @RestController
 public class DiscountController {

@@ -1,8 +1,8 @@
-package com.Exam.Service.implement;
+package com.Exam.service.implement;
 
 import org.springframework.stereotype.Service;
 
-import com.Exam.Service.ReadNumberService;
+import com.Exam.service.ReadNumberService;
 
 @Service
 public class ReadNumberImplement implements ReadNumberService{

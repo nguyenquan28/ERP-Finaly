@@ -1,4 +1,4 @@
-package com.Exam.Service.implement;
+package com.Exam.service.implement;
 
 import javax.mail.internet.MimeMessage;
 
@@ -7,7 +7,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.Exam.Service.PriceQuotationService;
+import com.Exam.service.PriceQuotationService;
 
 @Service
 public class PriceQuotationImplement implements PriceQuotationService{

@@ -396,9 +396,9 @@
             }
         })
         
-        for(let i = 0 ; i < amount.length;i++){
+        for(let i = 0 ; i < amounts.length;i++){
         	amounts[i].addEventListener('change',function(){      
-        			alert("???")
+        			
         			sums[i].innerHTML = amounts[i].value * prices[i].textContent
         			
         			
@@ -446,18 +446,18 @@
             		contentType:"application/json",
             		data :JSON.stringify(productsSelected),
             		success:function(){
-            			console.log("success")
+            			$.ajax({
+                    		type:"post",
+                    		url:"http://localhost:8080/api/send-mail/prepare-customer",
+                    		contentType:"application/json",
+                    		data :JSON.stringify(customersSelected),
+                    		success:function(){
+                    			console.log("success")
+                    		}
+                    	})
             		}
             	})
-            	$.ajax({
-            		type:"post",
-            		url:"http://localhost:8080/api/send-mail/prepare-customer",
-            		contentType:"application/json",
-            		data :JSON.stringify(customersSelected),
-            		success:function(){
-            			console.log("success")
-            		}
-            	})
+            	
         	}
         	
         	

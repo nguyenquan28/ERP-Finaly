@@ -1,4 +1,4 @@
-package com.Exam.Service.implement;
+package com.Exam.service.implement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.Exam.DAO.CustomerDAO;
 import com.Exam.Entity.Customer;
-import com.Exam.Service.CustomerService;
+import com.Exam.service.CustomerService;
 @Service
 public class CustomerServiceImplement implements CustomerService{
 	

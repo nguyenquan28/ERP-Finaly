@@ -8,12 +8,8 @@ import com.Exam.Entity.Product;
 public class OrderItemDTO {
 	
 	int ma;
-	
-	
 	private ProductDTO product;
-	
 	int soLuong;
-	
 	double thanhTien;
 
 	public int getMa() {

@@ -31,6 +31,10 @@ public class AdminController {
 	public String Warehouse() {
 		return "wareHouse";
 	}
+	@RequestMapping("/order")
+	public String Order() {
+		return "order";
+	}
 	@RequestMapping("/baogia")
 	public String send(ModelMap modelMap) {
 		modelMap.addAttribute("customers",customer.findAll());

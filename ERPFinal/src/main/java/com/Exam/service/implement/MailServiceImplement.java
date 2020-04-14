@@ -80,8 +80,8 @@ public class MailServiceImplement implements MailService {
 	@Override
 	public void sendMailHelp(List<ProductRequest> products, List<EmailRequest> customers) throws IOException {
 		Context context = new Context();
+		int sum = sum(products);
 		
-		int sum = products.stream().mapToInt(i-> i.getSum()).sum();
 //		
 		context.setVariable("sum", sum);
 		context.setVariable("products", products);
@@ -104,6 +104,15 @@ public class MailServiceImplement implements MailService {
 		});
 		
 		
+	}
+
+	@Override
+	public int sum(List<ProductRequest> productRequests) {
+		int total = 0;
+		for (int i = 0; i < productRequests.size(); i++) {
+			total+= productRequests.get(i).getSum();
+		}
+		return total ;
 	}
 	
 	

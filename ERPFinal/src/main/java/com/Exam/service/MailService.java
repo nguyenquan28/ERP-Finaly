@@ -21,7 +21,7 @@ public interface MailService {
 	public void sendMailHelp(List<ProductRequest>products,List<EmailRequest>customers) throws IOException;
 	
 	
-	
+	public int sum(List<ProductRequest>productRequests);
 	
 		
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
@@ -35,15 +36,23 @@ public class GenerateExcel implements GenerateFileService{
 		fieldRow.createCell(2).setCellValue("Đơn giá");
 		fieldRow.createCell(3).setCellValue("Số lượng");
 		fieldRow.createCell(4).setCellValue("Thành tiền");
-		
-		for (int i = 0; i < list.size(); i++) {
+		int total = 0;
+		int i;
+		for ( i = 0; i < list.size(); i++) {
 			Row dataRow = sheet.createRow(i+2);
 			dataRow.createCell(0).setCellValue(list.get(i).getId());
 			dataRow.createCell(1).setCellValue(list.get(i).getName());
 			dataRow.createCell(2).setCellValue(list.get(i).getPrice());
 			dataRow.createCell(3).setCellValue(list.get(i).getAmount());
 			dataRow.createCell(4).setCellValue(list.get(i).getSum());
+			total+= list.get(i).getSum();
 		}
+		
+		Row sumRow = sheet.createRow(i+2);
+		sumRow.createCell(3).setCellValue("Tổng cộng  ");
+		sumRow.createCell(4).setCellValue( total+"VNĐ");
+		
+		
 		
 		
 		sheet.autoSizeColumn(0);

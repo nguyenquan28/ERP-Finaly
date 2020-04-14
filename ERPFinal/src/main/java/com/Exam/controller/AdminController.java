@@ -6,8 +6,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.Exam.service.CustomerService;
-import com.Exam.service.ProductServcie;
+import com.Exam.Service.CustomerService;
+import com.Exam.Service.ProductServcie;
 
 @Controller
 public class AdminController {

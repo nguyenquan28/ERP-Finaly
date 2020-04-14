@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Exam.Entity.Product;
-import com.Exam.service.ProductServcie;
+import com.Exam.Service.ProductServcie;
 
 @RestController
 public class ProductController {

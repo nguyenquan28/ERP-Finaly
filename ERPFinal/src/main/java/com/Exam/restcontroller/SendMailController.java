@@ -13,9 +13,9 @@ import com.Exam.Entity.Customer;
 import com.Exam.Entity.Product;
 import com.Exam.dto.EmailRequest;
 import com.Exam.dto.ProductRequest;
-import com.Exam.service.CustomerService;
-import com.Exam.service.MailService;
-import com.Exam.service.ProductServcie;
+import com.Exam.Service.CustomerService;
+import com.Exam.Service.MailService;
+import com.Exam.Service.ProductServcie;
 
 @RestController
 @RequestMapping("/api/send-mail")

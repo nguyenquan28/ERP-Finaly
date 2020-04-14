@@ -1,4 +1,4 @@
-package com.Exam.service.implement;
+package com.Exam.Service.implement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.Exam.DAO.ProductDAO;
 import com.Exam.Entity.Product;
-import com.Exam.service.ProductServcie;
+import com.Exam.Service.ProductServcie;
 
 @Service
 public class ProductServiceImplement implements ProductServcie{

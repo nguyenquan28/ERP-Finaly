@@ -1,4 +1,4 @@
-package com.Exam.service.implement;
+package com.Exam.Service.implement;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -36,9 +36,9 @@ import com.Exam.Entity.Customer;
 import com.Exam.Entity.Product;
 import com.Exam.dto.EmailRequest;
 import com.Exam.dto.ProductRequest;
-import com.Exam.service.GenerateExcel;
-import com.Exam.service.GenerateFileService;
-import com.Exam.service.MailService;
+import com.Exam.Service.GenerateExcel;
+import com.Exam.Service.GenerateFileService;
+import com.Exam.Service.MailService;
 import com.sun.mail.iap.ByteArray;
 @Service
 public class MailServiceImplement implements MailService {

@@ -24,7 +24,7 @@ public class AdminController {
 	
 	@RequestMapping("/sales")
 	public String PageSale() {
-		return "salebyvu";
+		return "Sale";
 	}
 
 	@GetMapping("/warehouse")

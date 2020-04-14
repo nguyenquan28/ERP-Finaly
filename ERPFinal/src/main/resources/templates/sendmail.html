@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+   	
+    <title>Medusa Shop</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="css/baogia.css">
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top d-flex p-2">
+
+            <!-- Logo -->
+            <a class="logo" href="#">
+                <img src="images/logomedusa.png" alt="" class="offset-2">
+            </a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Search -->
+                <form class="form-outline col-md-5 ">
+                    <div class="md-form my-0">
+                        <div>
+                            <input class="form-control mr-sm-2 d-flex flex-row bg-light" type="text"
+                                placeholder="Search for Name" aria-label="Search">
+                        </div>
+
+                        <div class="search_btn d-flex flex-row">
+                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Notification -->
+                <ul class="navbar-nav nav-flex-icons offset-3">
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-envelope-o mr-2"></i>
+                            <span class="number bg-success">+5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-bell-o mr-2" aria-hidden="true"></i>
+                            <span class="number bg-warning">+1</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-cogs mr-3" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item avatar  pl-md-4" data-toggle="dropdown" >
+                        <img src="images/avt.png" alt="" class="dropdown-toggle" aria-haspopup="true"
+                        aria-expanded="false">
+                        <small style="color: #a8c5de">
+                            <a href="#">Administrator</a>
+                        </small>
+                    </li>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">
+                            <a href="">Trang chủ</a>
+                        </button>
+                        
+                            <form action="#" th:action="@{/logout}" method="POST">
+                            <button class="dropdown-item" type="submit">
+                            		LogOut
+						       </button>
+						    </form>
+                    </div>
+                </ul>
+
+            </div>
+
+            <!-- Collapsible content -->
+        </nav>
+
+        <!-- container -->
+        <div class="row mt-5 pt-1" id="body-row">
+
+            <!-- Side bar -->
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+
+                <ul class="list-group">
+
+                    <li
+                        class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                        <small><strong>Quản trị</strong></small>
+                    </li>
+
+                    <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-dashboard fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Bảng điều khiển</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu1' class="collapse sidebar-submenu">
+                        <a href="http://localhost:8080/" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-line-chart ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Báo cáo</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Đơn hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Báo giá</span>
+                        </a>
+                    </div>
+                    <a href="#submenu2" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-user fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Thông tin</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu2' class="collapse sidebar-submenu">
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Nhân viên</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Khách hàng</span>
+                        </a>
+                    </div>
+
+                    <a href="#submenu3" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-tasks fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Công nợ</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu3' class="collapse sidebar-submenu">
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Phải thu</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Phải trả</span>
+                        </a>
+                    </div>
+
+                    <li
+                        class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                        <small><strong>Tùy chọn</strong></small>
+                    </li>
+
+                    <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-shopping-cart fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Bán hàng</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+
+                    <div id='submenu4' class="collapse sidebar-submenu">
+                        <a href="http://localhost:8080/sales" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-plus-circle ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Bán hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-refresh ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Đổi hàng</span>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
+                            <span class="menu-collapsed">Tạo tài khoản</span>
+                        </a>
+                    </div>
+
+                    <a href="#" class="bg-dark list-group-item list-group-item-action" >
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-calendar fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Kho hàng</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="bg-dark list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-search fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Tìm kiếm</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="bg-dark list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="fa fa-envelope-o fa-fw mr-3"></span>
+                            <span class="menu-collapsed">Messages
+                                <!-- <span class="badge badge-pill badge-primary ml-2">5</span> -->
+                            </span>
+                        </div>
+                    </a>
+
+                    <li class="list-group-item sidebar-separator menu-collapsed"></li>
+
+                    <a href="#" data-toggle="sidebar-colapse"
+                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+            <!-- warehouse -->
+            <div class="warehouse">
+                <div class="warehouse-path">
+                    <a href="http://localhost:8080/">Bảng Điều Khiển</a>
+                    <span> /Báo giá</span>   
+                </div>
+                <div class="warehouse-search mt-1">
+                    <div class="input-warehose col-lg-4">
+                        <input type="text" class="form-control col-lg-8 ip-search-warehose" id="inputSearchWarehouse" placeholder="Enter Name Product">
+                        <button type="button" class="btn-warehose btn btn-primary col-lg-2" id="searchWarehouse">Enter</button>
+                    </div>
+                    
+                </div>
+                 <div class="baogia d-flex">
+                    <div class="warehouse-show table-1 mt-2">
+                        <h4 class="text text-center">Lựa chọn sản phẩm</h4>
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Đơn Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="products">
+                               <th:block th:each="product : ${products}">
+                               	<tr>
+                               		<td> <p th:text="${product.maSP}" th:id="productId"> </p></td>
+                               		<td> <p th:text="${product.tenSP}" th:id="productName"></p></td>
+                               		<td> <p th:text="${product.donGia}" th:id="price"></p> </td>
+                               		<td> <input th:class="form-control" th:id="amount" style="width: 80px" type="number" th:min=0 th:value=1 > </td>
+                               		<td> <p th:text="${product.donGia}" th:id="sum"></p> </td>
+                               		<td><input class="form-control checkBox-product " id="checkBox-product" type="checkbox" onclick="check(this.id)" th:value="${product.maSP}"  ></td>
+                               	</tr>
+                               </th:block>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><div class="form-group form-inline">
+                                        <span for=""><input class="form-control"  onclick="check(this.id)" id="checkAll-product"  type="checkbox"  >Chọn tất cả</label>
+                                    </div></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        
+                            
+                       
+                       
+                    </div>
+                    <div class="warehouse-show table-2 mt-2">
+                        <h4 class="text text-center">Lựa chọn khách hàng</h4>
+                        <table class="table table-border" >
+                            <thead>
+                                
+                                    <tr><th class="">ID</th>
+                                        <th class="">Tên khách hàng</th>
+                                        <th class="">Email</th>
+                                        
+                                        <th class=""></th></tr>
+                              
+                            </thead>
+                            <tbody id="customers">
+                                <th:block th:each="customer : ${customers}">
+                               	<tr>
+                               		<td> <p  th:text="${customer.maKH}" th:id="customerId"></p> </td>
+                               		<td><p th:text="${customer.tenKH}" th:id="customerName"></p></td>
+                               		<td><p  th:text="${customer.email}"th:id="email"></p></td>
+                               		
+                               		<td><input class="form-control checkBox-customer" id="checkBox-customer" onclick="check(this.id)" type="checkbox"  th:value="${customer.maKH}"  ></td>
+                               	</tr>
+                               </th:block>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><div class="form-group form-inline">
+                                        <span for=""><input class="form-control" id="checkAll-customer" onclick="check(this.id)" type="checkbox" value="1" name="123" >Chọn tất cả</label>
+                                    </div></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button class="btn btn-primary" id="send-mail">Xác nhận gởi mail</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+    <script src="main.js"></script>
+    <script>
+        
+       
+    let productCheckboxs = document.querySelectorAll("#checkBox-product")
+	let customerCheckboxs = document.querySelectorAll("#checkBox-customer")
+	let productIds = document.querySelectorAll("#productId")
+	let productNames = document.querySelectorAll("#productName")
+	let amounts = document.querySelectorAll("#amount")
+	let sums = document.querySelectorAll("#sum")
+	let prices = document.querySelectorAll("#price")
+	
+	
+    let customerIds = document.querySelectorAll("#customerId")
+    let customerNames = document.querySelectorAll("#customerName")
+    let emails = document.querySelectorAll("#email")
+   
+        	function check(id){
+            		let checkBox = document.getElementById(id);           		
+            		if(id=="checkAll-customer" || id=="checkAll-product"){
+                		if(id=="checkAll-product"){
+                			if(checkBox.checked){
+                				productCheckboxs.forEach(i => i.checked=true)  
+                				
+                			}else{               				
+                				productCheckboxs.forEach(i=>i.checked=false)
+                			}
+                		}else{
+                			if(checkBox.checked){
+                				customerCheckboxs.forEach(i=>i.checked=true)                				
+                			}else{
+                				customerCheckboxs.forEach(i=>i.checked=false)
+                			}
+                		}
+                	}else{
+                		if(id=="checkBox-product"){
+                			 document.getElementById("checkAll-product").checked=false;
+                		}else{
+                			 document.getElementById("checkAll-customer").checked=false;
+                		}
+                	}
+                } 
+    
+    
+        
+    $(document).ready(function(){
+    	
+        $("#searchWarehouse").click(function search(){
+            let ipsearch = document.getElementById("inputSearchWarehouse").value;
+            if(ipsearch == ""){
+                $.ajax({url: "http://localhost:8080/admin/getAllProduct"})
+                .then(function(datawarehouse){
+                    ShowDataProduct(datawarehouse);
+                })
+            } else {
+                $.ajax({url : "http://localhost:8080/admin/selectByName?nameSP="+ipsearch})
+                    .then(function(dataSearch){
+                        ShowDataProduct(dataSearch);
+                    })
+            }
+        })
+        
+        for(let i = 0 ; i < amount.length;i++){
+        	amounts[i].addEventListener('change',function(){      
+        			alert("???")
+        			sums[i].innerHTML = amounts[i].value * prices[i].textContent
+        			
+        			
+        	})
+        }
+        $("#send-mail").click(function(){
+        	let productsSelected=[];
+        	let customersSelected=[];
+        	for(let i=0; i < productCheckboxs.length;i++){
+        		if(productCheckboxs[i].checked == true){
+        			let product={}
+        			product.id=productIds[i].textContent
+        			product.name=productNames[i].textContent
+        			product.amount=amounts[i].value
+        			product.price=prices[i].textContent
+        			product.sum=sums[i].textContent
+        			productsSelected.push(product)
+        			
+        		}
+        	}
+        	
+        	for(let i=0; i < customerCheckboxs.length;i++){
+        		if(customerCheckboxs[i].checked == true){
+        			let customer={}
+        			customer.id=customerIds[i].textContent
+        			customer.name=customerNames[i].textContent
+        			customer.email=emails[i].textContent
+        			
+        			customersSelected.push(customer)
+        			
+        		}
+        	}
+        	
+        	if( productsSelected.length==0 &&  customersSelected.length ==0 ){
+        		alert('Vui lòng chọn sản phẩm và khách hàng!!!')
+        	}else if(productsSelected.length !=0 &&  customersSelected.length ==0){
+        		alert('Vui lòng chọn khách hàng!!!')
+        	}else if(productsSelected.length==0 &&  customersSelected.length !=0){
+        		alert('Vui lòng chọn sản phẩm!!!')
+        	}
+        	else{
+        		$.ajax({
+            		type:"post",
+            		url:"http://localhost:8080/api/send-mail/prepare-product",
+            		contentType:"application/json",
+            		data :JSON.stringify(productsSelected),
+            		success:function(){
+            			console.log("success")
+            		}
+            	})
+            	$.ajax({
+            		type:"post",
+            		url:"http://localhost:8080/api/send-mail/prepare-customer",
+            		contentType:"application/json",
+            		data :JSON.stringify(customersSelected),
+            		success:function(){
+            			console.log("success")
+            		}
+            	})
+        	}
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        })
+        
+        
+	
+    })    
+		
+		
+	
+    	
+		
+		
+    </script>
+</body>
+
+</html>

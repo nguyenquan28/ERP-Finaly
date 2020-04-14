@@ -1,4 +1,4 @@
-package com.Exam.controller;
+package com.Exam.restcontroller;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Exam.Entity.Product;
-import com.Exam.Service.ProductServcie;
+import com.Exam.service.ProductServcie;
 
 @RestController
 public class ProductController {

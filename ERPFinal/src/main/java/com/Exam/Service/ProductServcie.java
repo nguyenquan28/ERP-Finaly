@@ -1,4 +1,4 @@
-package com.Exam.Service;
+package com.Exam.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,37 +11,22 @@ import org.springframework.stereotype.Service;
 import com.Exam.DAO.ProductDAO;
 import com.Exam.Entity.Product;
 
-@Service
-public class ProductServcie {
-	@Autowired
-	ProductDAO productDAO;
+
+public interface ProductServcie {
 	
 	//lay tat ca du lieu cua san pham
-	public List<Product> getAllProduct(){
-		return productDAO.findAll();
-	}
+	public List<Product> getAllProduct();
 	//tim kiem trong kho theo ten
-	public List<Product> SelectByName(String nameSP){
-		Product product = new Product();
-		product.setTenSP(nameSP);
-		ExampleMatcher exampleMatcher = ExampleMatcher.matching()
-			.withIgnorePaths("maSP")
-			.withIgnorePaths("donGia")
-			.withIgnorePaths("donVi")
-			.withIgnorePaths("soLuong")
-			.withIgnorePaths("Size")
-			.withIgnorePaths("phanLoai");
-		return productDAO.findAll(Example.of(product, exampleMatcher));	
-	}
+	public List<Product> SelectByName(String nameSP);
 	
 //	Get one Product by ID
-	public Optional<Product> getProductById(int maSP){
-		return productDAO.findById(maSP);
-	}
+	public Optional<Product> getProductById(int maSP);
 	
 //	Save Product in Carts
-	public void insertOneProduct(Product product) {
-		productDAO.save(product);
-	}
+	public void insertOneProduct(Product product) ;
+	
+	
+		
+		
 	
 }

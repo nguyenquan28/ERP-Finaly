@@ -349,22 +349,7 @@
                             </tr>
                         </thead>
                         <tbody id="table">
-                            <tr>
-                                <td>1</td>
-                                <td>Quần</td>
-                                <td>Đơn vị x</td>
-                                <td>200</td>
-                                <td>5</td>
-                                <td>100</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Áo</td>
-                                <td>Đơn vị y</td>
-                                <td>200</td>
-                                <td>5</td>
-                                <td>100</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                     <hr>
@@ -516,7 +501,6 @@
 		 				$("#amounts").html()
 		 				$("#inputID").html()
 		 				/* Save carts */
-		 				let maGioHang = 2
 		 				let cart = {
 		 					"license" : $("#license").val(),
 		 					"maSP" : product.maSP,
@@ -545,45 +529,45 @@
 		
 		/* Function save Company partner */
 		$(document).ready(function () {
-            let thanhTien=0;
-            let orderItems = []
-                let tb = document.getElementById("table")
-                let  rowSize = tb.rows.length
-                for(let i = 0 ; i < rowSize ; i++){
-                    let cell = tb.rows.item(i).cells;
 
-                    
-                        let orderItem = {}
-                        let product = {}
-                        product.maSP = cell.item(0).innerHTML
-                        product.tenSP = cell.item(1).innerHTML
-                        product.donVi = cell.item(2).innerHTML
-                        product.donGia = cell.item(3).innerHTML
-                        orderItem.product=product;
-                        orderItem.soLuong = cell.item(4).innerHTML
-                        orderItem.thanhtien = cell.item(5).innerHTML
-                        thanhTien += (parseInt(orderItem.thanhtien))
-                        orderItems.push(orderItem)
-                   
-                }
+			let thanhTien=0;
+            let orderItems = []
                 
-            
-            
 			$("#submit").click(function () {								
                 
-				let khuyenMai = $("#discounts").children("option:selected").val()
-	            let tongTien = thanhTien - (thanhTien/100*khuyenMai)
-                document.getElementById("sum").innerText=thanhTien
-                document.getElementById("s").innerText=khuyenMai+"%"
-                document.getElementById("total").innerText=tongTien               
-				$.ajax({
-					url: "http://localhost:8080/company",
-				 	method: 'post', 
-				 	dataType: 'json',
-		            contentType: 'application/json',
-				 	data: JSON.stringify(company)
-				 })
-			});
+	                let tb = document.getElementById("table")
+	                let  rowSize = tb.rows.length
+	                for(let i = 0 ; i < rowSize ; i++){
+	                    let cell = tb.rows.item(i).cells;
+
+	                    
+	                        let orderItem = {}
+	                        let product = {}
+	                        product.maSP = cell.item(0).innerHTML
+	                        product.tenSP = cell.item(1).innerHTML
+	                        product.donVi = cell.item(2).innerHTML
+	                        product.donGia = cell.item(3).innerHTML
+	                        orderItem.product=product;
+	                        orderItem.soLuong = cell.item(4).innerHTML
+	                        orderItem.thanhtien = cell.item(5).innerHTML
+	                        thanhTien += (parseInt(orderItem.thanhtien))
+	                        orderItems.push(orderItem)
+	                   
+	                }
+				
+					let khuyenMai = $("#discounts").children("option:selected").val()
+		            let tongTien = thanhTien - (thanhTien/100*khuyenMai)
+	                document.getElementById("sum").innerText=thanhTien
+	                document.getElementById("s").innerText=khuyenMai+"%"
+	                document.getElementById("total").innerText=tongTien               
+					/* $.ajax({
+						url: "http://localhost:8080/company",
+					 	method: 'post', 
+					 	dataType: 'json',
+			            contentType: 'application/json',
+					 	data: JSON.stringify(company)
+					 }) */
+				});
 
             $("#pay").click(function(){
                 let ngay = new Date().getDate()+"/"+(new Date().getUTCMonth()+1)+"/"+ new Date().getFullYear()

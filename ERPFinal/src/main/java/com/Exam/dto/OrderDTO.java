@@ -1,12 +1,6 @@
 package com.Exam.dto;
 
-import java.util.Date;
 import java.util.List;
-
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
-import com.Exam.Entity.Product;
 
 public class OrderDTO {
 	

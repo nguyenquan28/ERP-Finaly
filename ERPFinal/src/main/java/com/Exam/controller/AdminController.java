@@ -24,24 +24,13 @@ public class AdminController {
 	
 	@RequestMapping("/sales")
 	public String PageSale() {
-<<<<<<< HEAD
-		return "salebyvu";
-=======
 		return "sale";
->>>>>>> 9871b449c1a0415fd0680337103379966462a6cf
 	}
 
 	@GetMapping("/warehouse")
 	public String Warehouse() {
 		return "wareHouse";
 	}
-<<<<<<< HEAD
-	@RequestMapping("/order")
-	public String Order() {
-		return "order";
-	}
-=======
->>>>>>> 9871b449c1a0415fd0680337103379966462a6cf
 	@RequestMapping("/baogia")
 	public String send(ModelMap modelMap) {
 		modelMap.addAttribute("customers",customer.findAll());

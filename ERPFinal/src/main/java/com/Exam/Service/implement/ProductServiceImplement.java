@@ -1,8 +1,4 @@
-<<<<<<< HEAD:ERPFinal/src/main/java/com/Exam/Service/ProductServcie.java
-package com.Exam.service;
-=======
 package com.Exam.service.implement;
->>>>>>> 9871b449c1a0415fd0680337103379966462a6cf:ERPFinal/src/main/java/com/Exam/service/implement/ProductServiceImplement.java
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +14,6 @@ import com.Exam.DAO.ProductDAO;
 import com.Exam.Entity.Product;
 import com.Exam.service.ProductServcie;
 
-<<<<<<< HEAD:ERPFinal/src/main/java/com/Exam/Service/ProductServcie.java
-
-public interface ProductServcie {
-	
-	//lay tat ca du lieu cua san pham
-	public List<Product> getAllProduct();
-=======
 @Service
 public class ProductServiceImplement implements ProductServcie{
 	@Autowired
@@ -35,18 +24,28 @@ public class ProductServiceImplement implements ProductServcie{
 	public List<Product> getAllProduct(){
 		return productDAO.findAll();
 	}
->>>>>>> 9871b449c1a0415fd0680337103379966462a6cf:ERPFinal/src/main/java/com/Exam/service/implement/ProductServiceImplement.java
 	//tim kiem trong kho theo ten
-	public List<Product> SelectByName(String nameSP);
+	public List<Product> SelectByName(String nameSP){
+		Product product = new Product();
+		product.setTenSP(nameSP);
+		ExampleMatcher exampleMatcher = ExampleMatcher.matching()
+			.withIgnorePaths("maSP")
+			.withIgnorePaths("donGia")
+			.withIgnorePaths("donVi")
+			.withIgnorePaths("soLuong")
+			.withIgnorePaths("Size")
+			.withIgnorePaths("phanLoai");
+		return productDAO.findAll(Example.of(product, exampleMatcher));	
+	}
 	
 //	Get one Product by ID
-	public Optional<Product> getProductById(int maSP);
+	public Optional<Product> getProductById(int maSP){
+		return productDAO.findById(maSP);
+	}
 	
 //	Save Product in Carts
-	public void insertOneProduct(Product product) ;
-	
-	
-		
-		
+	public void insertOneProduct(Product product) {
+		productDAO.save(product);
+	}
 	
 }

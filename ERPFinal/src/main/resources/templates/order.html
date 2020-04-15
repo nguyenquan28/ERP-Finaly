@@ -276,69 +276,10 @@
 
 
 <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header pb-0">
-                    <div class="d-flex flex-column">
-                        <h5 class="modal-title" id="exampleModalLabel">Ma Don Hang : 1</h5>
-                        <p>20/11/2012</p>
-                    </div>
-                    
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                
-                <div class="MD-order-tt">
-                    <div class="btn col-12 row">
-                        <div class="MD-order-title col-md-4 text-right float-left">
-                            <p>Khách Hàng :</p>
-                            <p>Địa chỉ :</p>
-                            <p>Điện Thoại :</p>
-                            <p>Mail :</p>
-                        </div>
-                        <div class="MD-order-content col-md-8 text-left">
-                            <p>Lê Hoàng Lợi</p>
-                            <p>Hương Trà , Thành Phố Huế</p>
-                            <p>0961401478</p>
-                            <p>lehoangloi@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="border-bottom: 1px solid black;"></div>
-                <div class="MD-order-nv mt-3 row">
-                    <div class="col"></div>
-                    <div class="col-4 row">
-                        <div class="col-5 text-right">
-                            <p>Tên Cửa Hàng :</p>
-                            <p>Tên Nhân Viên :</p>
-                        </div>
-                        <div class="col-6 text-left">
-                            <p>Cửa Hàng A</p>
-                            <p>Nguyễn Văn A</p>
-                        </div>
-                    </div>
+    <div class="modal-Order" id="modal_Order">
         
-                    <div class="col-5 row">
-                        <div class="col-4 text-right">
-                            <p>Tổng Tiền :</p>
-                            <p>Trạng Thái :</p>
-                        </div>
-                        <div class="col-8 text-left">
-                            <p>100000000đ</p>
-                            <p>Đã Thanh Toán</p>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>          
-                </div>
-            </div>
-        </div>
     </div>
+    
 
 
 
@@ -360,6 +301,7 @@
             $.ajax({url: "http://localhost:8080/admin/getAllOrder"})
                 .then(function(dataOrder){                    
                     ShowDataOrder(dataOrder);
+                    addModalOrdel(dataOrder);
                 })
         }
         function ShowDataOrder(dataOrder){            
@@ -377,7 +319,7 @@
                                 <td class="col-2 text-danger">${dataOrder[i].trangThai}</td>
                                 <td class="col-1">
                                 <i class="fas fa-trash-alt text-danger" onclick="deleteOneOrderById(${dataOrder[i].id})"></i>
-                                <i type="button" data-toggle="modal" data-target="#exampleModal" class="fas fa-info-circle text-warning"></i>
+                                <i type="button" data-toggle="modal" data-target="#exampleModal${dataOrder[i].id}" class="fas fa-info-circle text-warning"></i>
                                 </td>
                             </tr>`;
                         $(contents).appendTo(table);
@@ -388,6 +330,82 @@
         function deleteOneOrderById(idorder){
             $.ajax({url: "http://localhost:8080/admin/deleteOneOrderById?id="+idorder})
             location.reload();
+        }
+
+        //add modal all order
+        function addModalOrdel(dataModal){
+            let modal_order = document.getElementById("modal_Order");
+                modal_order.innerHTML= "";
+                for(let i = 0; i <dataModal.length; i++){
+                    let contentsModal = "";
+                        contentsModal +=`
+                        <div class="modal fade" id="exampleModal${dataModal[i].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header pb-0">
+                                        <div class="d-flex flex-column">
+                                            <h5 class="modal-title" id="exampleModalLabel">Ma Don Hang : 1</h5>
+                                            <p>20/11/2012</p>
+                                        </div>
+                                        
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="MD-order-tt">
+                                        <div class="btn col-12 row">
+                                            <div class="MD-order-title col-md-4 text-right float-left">
+                                                <p>Khách Hàng :</p>
+                                                <p>Địa chỉ :</p>
+                                                <p>Điện Thoại :</p>
+                                                <p>Mail :</p>
+                                            </div>
+                                            <div class="MD-order-content col-md-8 text-left">
+                                                <p>Lê Hoàng Lợi</p>
+                                                <p>Hương Trà , Thành Phố Huế</p>
+                                                <p>0961401478</p>
+                                                <p>lehoangloi@gmail.com</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="" style="border-bottom: 1px solid black;"></div>
+                                    <div class="MD-order-nv mt-3 row">
+                                        <div class="col"></div>
+                                        <div class="col-4 row">
+                                            <div class="col-5 text-right">
+                                                <p>Tên Cửa Hàng :</p>
+                                                <p>Tên Nhân Viên :</p>
+                                            </div>
+                                            <div class="col-6 text-left">
+                                                <p>Cửa Hàng A</p>
+                                                <p>Nguyễn Văn A</p>
+                                            </div>
+                                        </div>
+                            
+                                        <div class="col-5 row">
+                                            <div class="col-4 text-right">
+                                                <p>Tổng Tiền :</p>
+                                                <p>Trạng Thái :</p>
+                                            </div>
+                                            <div class="col-8 text-left">
+                                                <p>100000000đ</p>
+                                                <p>Đã Thanh Toán</p>
+                                            </div>
+                                        </div>
+                                        <div class="col"></div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                        $(contentsModal).appendTo(modal_order);
+                }
+
         }
     </script>
     

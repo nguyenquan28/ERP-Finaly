@@ -16,9 +16,7 @@ public class Orders {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;	
-	
-	
+	int id;		
 	String ngay;
 	String tenKH;
 	String email;
@@ -133,13 +131,13 @@ public class Orders {
 		
 	}
 
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
+//	public List<OrderItem> getOrderItems() {
+//		return orderItems;
+//	}
 
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
-	}
+//	public void setOrderItems(List<OrderItem> orderItems) {
+//		this.orderItems = orderItems;
+//	}
 
 	
 	

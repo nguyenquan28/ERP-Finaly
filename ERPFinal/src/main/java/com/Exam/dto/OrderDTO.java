@@ -1,5 +1,6 @@
 package com.Exam.dto;
 
+<<<<<<< HEAD
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,10 @@ import javax.persistence.OneToMany;
 
 import com.Exam.Entity.Product;
 
+=======
+import java.util.List;
+
+>>>>>>> 9871b449c1a0415fd0680337103379966462a6cf
 public class OrderDTO {
 	
 	

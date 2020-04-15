@@ -23,7 +23,7 @@ public class OrderItem {
 	int id;
 	
 	@ManyToOne
-	@JoinColumn(name = "order_id")
+	@JoinColumn(name = "orders_id")
 	Orders order;
 	
 	
@@ -36,7 +36,7 @@ public class OrderItem {
 	}
 	
 	@OneToOne
-	@JoinColumn(name="product_maSP")
+	@JoinColumn(name="product_masp")
 	Product product;
 	
 	int soLuong;

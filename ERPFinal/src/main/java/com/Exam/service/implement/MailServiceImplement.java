@@ -71,7 +71,7 @@ public class MailServiceImplement implements MailService {
 				
 				
 			this.mailSender.send(mimeMessage);
-			System.out.println("Thành công");
+			System.out.println("Gởi mail Thành công");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}								

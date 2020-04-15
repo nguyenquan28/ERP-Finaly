@@ -37,7 +37,7 @@ public class Orders {
 		this.tongTien = tongTien;
 	}
 
-	@OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	List<OrderItem>orderItems;
 
 	public int getId() {

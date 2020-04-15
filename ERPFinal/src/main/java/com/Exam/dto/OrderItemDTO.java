@@ -8,17 +8,8 @@ import com.Exam.Entity.Product;
 public class OrderItemDTO {
 	
 	int ma;
-<<<<<<< HEAD
 	private ProductDTO product;
 	int soLuong;
-=======
-	
-	
-	private ProductDTO product;
-	
-	int soLuong;
-	
->>>>>>> 9871b449c1a0415fd0680337103379966462a6cf
 	double thanhTien;
 
 	public int getMa() {

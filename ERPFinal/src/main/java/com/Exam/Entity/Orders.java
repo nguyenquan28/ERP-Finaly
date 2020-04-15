@@ -16,13 +16,7 @@ public class Orders {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-<<<<<<< HEAD
 	int id;		
-=======
-	int id;	
-	
-	
->>>>>>> 9871b449c1a0415fd0680337103379966462a6cf
 	String ngay;
 	String tenKH;
 	String email;
@@ -137,23 +131,13 @@ public class Orders {
 		
 	}
 
-<<<<<<< HEAD
-//	public List<OrderItem> getOrderItems() {
-//		return orderItems;
-//	}
-
-//	public void setOrderItems(List<OrderItem> orderItems) {
-//		this.orderItems = orderItems;
-//	}
-=======
 	public List<OrderItem> getOrderItems() {
 		return orderItems;
-	}
+		}
 
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
-	}
->>>>>>> 9871b449c1a0415fd0680337103379966462a6cf
+}
 
 	
 	

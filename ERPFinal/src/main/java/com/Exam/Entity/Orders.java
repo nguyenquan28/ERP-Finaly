@@ -28,6 +28,8 @@ public class Orders {
 	String cuaHang;	
 	String trangThai;
 	int tongTien;
+	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	List<OrderItem>orderItems;
 	
 	public int getTongTien() {
 		return tongTien;
@@ -35,10 +37,7 @@ public class Orders {
 
 	public void setTongTien(int tongTien) {
 		this.tongTien = tongTien;
-	}
-
-	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	List<OrderItem>orderItems;
+	}	
 
 	public int getId() {
 		return id;

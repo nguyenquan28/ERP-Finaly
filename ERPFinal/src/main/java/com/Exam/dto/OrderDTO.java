@@ -5,7 +5,6 @@ import java.util.List;
 public class OrderDTO {
 	
 	
-	
 	String ngay;
 	String tenKH;
 	String email;

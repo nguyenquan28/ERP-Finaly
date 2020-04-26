@@ -30,23 +30,25 @@ public class Product {
 	@Column(name = "giaGoc")
 	int giaGoc;
 	@Column(name = "ngaySanXuat")
-	Date ngaySanXuat;
+	String ngaySanXuat;
 	@Column(name = "hanSuDung")
-	Date hanSuDung;
+	String hanSuDung;
 
-	public Date getNgaySanXuat() {
+
+
+	public String getNgaySanXuat() {
 		return ngaySanXuat;
 	}
 
-	public void setNgaySanXuat(Date ngaySanXuat) {
+	public void setNgaySanXuat(String ngaySanXuat) {
 		this.ngaySanXuat = ngaySanXuat;
 	}
 
-	public Date getHanSuDung() {
+	public String getHanSuDung() {
 		return hanSuDung;
 	}
 
-	public void setHanSuDung(Date hanSuDung) {
+	public void setHanSuDung(String hanSuDung) {
 		this.hanSuDung = hanSuDung;
 	}
 
@@ -55,7 +57,7 @@ public class Product {
 	}
 
 	public Product(int maSP, String tenSP, int donGia, String donVi, int soLuong, String size, String phanLoai,
-			int giaGoc, Date ngaySanXuat, Date hanSuDung) {
+			int giaGoc, String ngaySanXuat, String hanSuDung) {
 		super();
 		this.maSP = maSP;
 		this.tenSP = tenSP;

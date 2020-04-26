@@ -252,14 +252,16 @@
                 <div class="warehouse-show mt-2">
                     <table style="width: 100%;" id="sort">
                         <thead>
-                            <tr class="row title">
+                            <tr class="title row">
                                 <th class="col">Id</th>
-                                <th class="col">Name Product</th>
+                                <th class="col-2">Name Product</th>
                                 <th class="col">Price</th>
+                                <th class="col">Price Old</th>
                                 <th class="col">Unit</th>
                                 <th class="col">Amount</th>
                                 <th class="col">Size</th>
                                 <th class="col">Classify</th>
+                                <th class="col-2">Date Manufacture</th>
                             </tr>
                         </thead>
                         <tbody id="table">
@@ -272,7 +274,7 @@
 
             <!-- Model đổi hàng -->
                 <!-- Modal -->
-                <div class="modal fade modal-change" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <!-- <div class="modal fade modal-change" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -281,7 +283,7 @@
                             </div>
                             
                             <div class="container">
-                                <!-- thanh tieu de cua 2 modal -->
+
                                 <div class="MD-modal-paradigm row">
                                     <div class="MD-paradigm-color col-xl-6">
                                         <p class="MD-title-paradigm">1. Tim Don Hang</p>
@@ -297,19 +299,17 @@
                                         <input type="text" class="form-control col-xl-10" id="MD_maSP" placeholder="Ma Don Hang">
                                         <button class="btn btn-primary col-xl-1 MD-btn-checkmasp" id="check_maSP">Kiem Tra</button>
                                     </div>
-                                    <!-- thong tin tim kiem -->
+
                                     <div id="modaldata"></div>
                                     
                                 </div>
                             </div>                               
-                            <!-- <div class="modal-footer">                                
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div> -->
+
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="modal fade modal-change" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <!-- <div class="modal fade modal-change" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -318,7 +318,7 @@
                             </div>
                             
                             <div class="container">
-                                <!-- thanh tieu de cua 2 modal -->
+
                                 <div class="MD-modal-paradigm row">
                                     <div class="MD-paradigm-nocolor col-xl-6">
                                         <p class="MD-title-paradigm text-muted">1. Tim Don Hang</p>
@@ -407,7 +407,7 @@
                             
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
@@ -437,12 +437,14 @@
                         contents +=`
                             <tr class="row">
                                 <td class="col">${dataProduct[i].maSP}</td>
-                                <td class="col">${dataProduct[i].tenSP}</td>
+                                <td class="col-2">${dataProduct[i].tenSP}</td>
                                 <td class="col">${dataProduct[i].donGia}</td>
+                                <td class="col">${dataProduct[i].giaGoc}</td>
                                 <td class="col">${dataProduct[i].donVi}</td>
                                 <td class="col">${dataProduct[i].soLuong}</td>                                
                                 <td class="col">${dataProduct[i].size}</td> 
                                 <td class="col">${dataProduct[i].phanLoai}</td>
+                                <td class="col-2">${dataProduct[i].ngaySanXuat}</td>
                             </tr>`;
                         $(contents).appendTo(table);    
                     }

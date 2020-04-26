@@ -125,7 +125,7 @@
                             <span class="menu-collapsed">Đơn hàng</span>
                         </a>
 
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                        <a href="http://localhost:8080/baogia" class="list-group-item list-group-item-action bg-dark text-white">
                             <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
                             <span class="menu-collapsed">Báo giá</span>
                         </a>
@@ -159,7 +159,7 @@
                         </div>
                     </a>
 
-                    <div id='submenu3' class="collapse sidebar-submenu">
+                    <div id='submenu3' class="collapse sidebar-submenu" >
                         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                             <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
                             <span class="menu-collapsed">Phải thu</span>
@@ -201,7 +201,7 @@
                         </a>
                     </div>
 
-                    <a href="#" class="bg-dark list-group-item list-group-item-action" >
+                    <a href="http://localhost:8080/warehouse" class="bg-dark list-group-item list-group-item-action" >
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-calendar fa-fw mr-3"></span>
                             <span class="menu-collapsed">Kho hàng</span>
@@ -226,8 +226,7 @@
 
                     <li class="list-group-item sidebar-separator menu-collapsed"></li>
 
-                    <a href="#" data-toggle="sidebar-colapse"
-                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="#" data-toggle="sidebar-colapse"  class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span id="collapse-icon" class="fa fa-2x mr-3"></span>
                         </div>
@@ -243,7 +242,7 @@
                     </div>
                     <div class="col"></div> 
                     <div class="col-md-5 row">
-                        <button class="doihang col-3"><i class="fas fa-plus"></i> Doi Hang</button>
+
                         <div class="input-donhang col-8">
                             <label for="text">Search :</label>
                             <input type="text" id="" class="inputsearchdonhang" >
@@ -258,13 +257,34 @@
                                 <th class="col-2">Ma Don Hang</th>
                                 <th class="col-4">Thong Tin Dat Hang</th>
                                 <th class="col-1">Thanh Tien</th>
-                                <th class="col-2">Trang Thai</th>
+                                <th class="col-2">
+                                    <select class="" id="selectTrangThai" style="border: 0; background: transparent;">
+                                        <option selected>Trang Thai</option>
+                                        <option value="Asc">Da Thanh Toan</option>
+                                        <option value="Desc">Chua Thanh Toan</option>
+                                      </select>
+                                </th>
                                 <th class="col-1"></th>
+                                
                             </tr>
                         </thead>
-                        <tbody id="Orders">
-
-                            
+                        <tbody id="table">
+                        	<!-- <th:block th:each="order : ${orders}">
+                            	<tr class="row">
+                                	<td class="col-2"> <p th:text="${order.ngay}"></p></td>
+                                	<td class="col-2"><p th:text="${order.id}"></p></td>
+                                	<td class="col-4"> 
+	                                	<p th:text="${order.tenKH}" class="float-left" ></p>
+	                                	<p th:text="${order.phone}" class="float-left"></p>
+	                                	<p th:text="${order.email}" class="float-left"></p>
+                                	</td>
+                                	<td class="col-1"><p th:text="${order.tongTien}"></p></td>
+                                    <td class="col-2"><p th:text="${order.trangThai}"></p></td>
+                                    <td class= "col-1">
+                                    <i type="button" data-toggle="modal" data-target="#exampleModal${order.id}" class="fas fa-info-circle text-warning"></i>
+                                    </td>
+                            	</tr>
+                            </th:block> -->
                         </tbody>
                     </table>
                     
@@ -295,7 +315,7 @@
     <script src="tablesort.js"></script>
     <script src="doiHang.js"></script>
 
-    <!-- <script>
+    <script>
 
         //show all data order
         function ShowAllDataOrder(){
@@ -303,6 +323,7 @@
                 .then(function(dataOrder){ 
                     ShowDataOrder(dataOrder);
                     addModalOrdel(dataOrder);
+                    sortTrangThai(dataOrder)
                 })
         }
         function ShowDataOrder(dataOrder){            
@@ -310,7 +331,7 @@
             table.innerHTML = "";
             
                 for(let i = 0; i < dataOrder.length; i++){  
-                	console.log(dataOrder[i]);
+                	
                     let contents = "";
                         contents +=`
                             <tr class="row">
@@ -346,8 +367,8 @@
                                 <div class="modal-content">
                                     <div class="modal-header pb-0">
                                         <div class="d-flex flex-column">
-                                            <h5 class="modal-title" id="exampleModalLabel">Ma Don Hang : 1</h5>
-                                            <p>20/11/2012</p>
+                                            <h5 class="modal-title" id="exampleModalLabel">Ma Don Hang : ${dataModal[i].id}</h5>
+                                            <p>${dataModal[i].ngay}</p>
                                         </div>
                                         
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -364,14 +385,30 @@
                                                 <p>Mail :</p>
                                             </div>
                                             <div class="MD-order-content col-md-8 text-left">
-                                                <p>Lê Hoàng Lợi</p>
-                                                <p>Hương Trà , Thành Phố Huế</p>
-                                                <p>0961401478</p>
-                                                <p>lehoangloi@gmail.com</p>
+                                                <p>${dataModal[i].tenKH}</p>
+                                                <p>${dataModal[i].diaChi}</p>
+                                                <p>${dataModal[i].phone}</p>
+                                                <p>${dataModal[i].email}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="" style="border-bottom: 1px solid black;"></div>
+                                    
+                                    <div class="" style="border: 1px solid black;">
+                                        <table style="width: 100%;">
+                                            <thead>
+                                                <tr class="title row">
+                                                    <th class="col-2">Ma San Pham</th>
+                                                    <th class="col-4">Ten San Pham</th>                                                    
+                                                    <th class="col-2">Don Gia</th>
+                                                    <th class="col-1">So Luong</th>
+                                                    <th class="col-3">Thanh Tien</th>                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody id="MD_table_Pd${dataModal[i].id}">
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <div class="MD-order-nv mt-3 row">
                                         <div class="col"></div>
                                         <div class="col-4 row">
@@ -380,8 +417,8 @@
                                                 <p>Tên Nhân Viên :</p>
                                             </div>
                                             <div class="col-6 text-left">
-                                                <p>Cửa Hàng A</p>
-                                                <p>Nguyễn Văn A</p>
+                                                <p>${dataModal[i].cuaHang}</p>
+                                                <p>${dataModal[i].tenNguoiBan}</p>
                                             </div>
                                         </div>
                             
@@ -391,8 +428,8 @@
                                                 <p>Trạng Thái :</p>
                                             </div>
                                             <div class="col-8 text-left">
-                                                <p>100000000đ</p>
-                                                <p>Đã Thanh Toán</p>
+                                                <p>${dataModal[i].tongTien}</p>
+                                                <p>${dataModal[i].trangThai}</p>
                                             </div>
                                         </div>
                                         <div class="col"></div>
@@ -406,10 +443,65 @@
                         </div>
                         `;
                         $(contentsModal).appendTo(modal_order);
-                }
+                //add table san pham order
+                $(document).ready(function(){
+                    $.ajax({url : "http://localhost:8080/admin/getOrderItem?id="+dataModal[i].id})
+                        .then(function(data_MD_Pd){
+                            let MD_table_Pd = document.getElementById("MD_table_Pd"+dataModal[i].id);
+                                MD_table_Pd.innerHTML = "";
+
+                                for(let i = 0; i< data_MD_Pd.length; i++){                                    
+                                    let contentsModalPd = "";
+                                        contentsModalPd +=`
+                                        <tr class="row">
+                                            <td class="col-2">${data_MD_Pd[i].product.maSP}</td>
+                                            <td class="col-4">${data_MD_Pd[i].product.tenSP} </td>
+                                            <td class="col-2">${data_MD_Pd[i].product.donGia} ${data_MD_Pd[i].product.donVi}</td>
+                                            <td class="col-1">${data_MD_Pd[i].soLuong}</td>
+                                            <td class="col-3">${data_MD_Pd[i].thanhTien}</td>                                            
+                                        </tr>`;
+                                        $(contentsModalPd).appendTo(MD_table_Pd);
+                                }
+                        })                                    
+                })//end
+
+                }                
 
         }
-    </script> -->
+        function sortTrangThai(datas){
+                $("#selectTrangThai").change(function(){              
+                
+                let slt = $("#selectTrangThai").val();         
+                    if (slt ==="Desc") {
+                        datas.sort(function(a,b){
+                            var trangThaia = a.trangThai.toUpperCase();
+                            var trangThaib = b.trangThai.toUpperCase();
+                            if(trangThaia < trangThaib){
+                                return -1;
+                            }
+                            if(trangThaia > trangThaib){
+                                return 1;
+                            }
+                            return 0;
+                        })
+                    }else{
+                        datas.sort(function(a,b){
+                            var trangThaia = a.trangThai.toUpperCase();
+                            var trangThaib = b.trangThai.toUpperCase();
+                            if(trangThaia > trangThaib){
+                                return -1;
+                            }
+                            if(trangThaia < trangThaib){
+                                return 1;
+                            }
+                            return 0;
+                        })
+                    }  
+                    console.log(datas)       
+                ShowDataOrder(datas);
+                });
+            };
+    </script>
     
 </body>
 

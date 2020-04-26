@@ -6,7 +6,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.Exam.dto.OrderDTO;
 import com.Exam.service.CustomerService;
+import com.Exam.service.OrderService;
 import com.Exam.service.ProductServcie;
 
 @Controller
@@ -17,6 +19,8 @@ public class AdminController {
 	@Autowired
 	private ProductServcie product;
 	
+	@Autowired
+	private OrderService order;
 	@RequestMapping("/")
 	public String home() {
 		return "Admin";
@@ -32,10 +36,14 @@ public class AdminController {
 		return "wareHouse";
 	}
 	
-	@GetMapping("/order")
-	public String Order() {
+	@RequestMapping("/order")
+	public String Order(ModelMap modelMap) {
+		modelMap.addAttribute("orders", order.getAllOrder());
+		
 		return "Order";
 	}
+	
+	
 	@RequestMapping("/baogia")
 	public String send(ModelMap modelMap) {
 		modelMap.addAttribute("customers",customer.findAll());

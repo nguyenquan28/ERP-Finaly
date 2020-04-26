@@ -26,7 +26,7 @@ public class OrderService {
 	//seve order
 	public boolean save(OrderDTO orderDTO){
 		Orders order = new Orders();
-		List<OrderItem>orderItems = new ArrayList<OrderItem>();		
+		List<OrderItem>orderItems = new ArrayList<OrderItem>();
 		order.setTenKH(orderDTO.getTenKH());
 		order.setNgay(orderDTO.getNgay());
 		order.setCuaHang(orderDTO.getCuaHang());
@@ -46,36 +46,92 @@ public class OrderService {
 			product.setTenSP(productDTO.getTenSP());
 			product.setDonGia(productDTO.getDonGia());
 			product.setDonVi(productDTO.getDonVi());
-			product.setMaSP(productDTO.getMaSP());
-			
+			product.setMaSP(productDTO.getMaSP());			
 			
 			item.setProduct(product);
 			item.setSoLuong(orderItemDTO.getSoLuong());
 			item.setThanhTien(orderItemDTO.getThanhTien());
 			item.setOrder(order);
 			orderItems.add(item);
-		}
-		
+		}		
 		order.setOrderItems(orderItems);
 		orderDAO.save(order);
 		return true;
+	}	
+
+
+	public List<OrderDTO> getAllOrder(){
+		List<OrderDTO> orderDTOs = new ArrayList<OrderDTO>();
+		List<Orders>orders = orderDAO.findAll();
+		
+		for(Orders order : orders ) {
+			OrderDTO orderDTO = new OrderDTO();
+			orderDTO.setId(order.getId());
+			orderDTO.setNgay(order.getNgay());
+			orderDTO.setCuaHang(order.getCuaHang());
+			orderDTO.setDiaChi(order.getDiaChi());
+			orderDTO.setEmail(order.getEmail());
+			orderDTO.setPhone(order.getPhone());
+			orderDTO.setTenKH(order.getTenKH());
+			orderDTO.setTenNguoiBan(order.getTenNguoiBan());
+			orderDTO.setTongTien(order.getTongTien());
+			orderDTO.setTrangThai(order.getTrangThai());				
+			
+			List<OrderItemDTO>itemDTOs = new ArrayList<OrderItemDTO>();
+			List<OrderItem>items = order.getOrderItems();
+			
+			for(OrderItem or : items) {
+				OrderItemDTO itemDTO = new OrderItemDTO();
+				
+				itemDTO.setMa(or.getId());
+				itemDTO.setSoLuong(or.getSoLuong());
+				itemDTO.setThanhTien(or.getThanhTien());
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setMaSP(or.getProduct().getMaSP());
+				productDTO.setTenSP(or.getProduct().getTenSP());
+				productDTO.setDonVi(or.getProduct().getDonVi());
+				productDTO.setDonGia(or.getProduct().getDonGia());
+				itemDTO.setProduct(productDTO);
+				itemDTOs.add(itemDTO);
+			}
+			orderDTO.setOrderItems(itemDTOs);
+			orderDTOs.add(orderDTO);
+			
+		}	
+		return orderDTOs;
+	}
+	
+	
+	
+	public List<OrderItemDTO> getOrderItemByOrderId (int id ){		
+		Orders orders = orderDAO.findOrderById(id);		
+		List<OrderItemDTO>itemDTOs = new ArrayList<OrderItemDTO>();
+		List<OrderItem>items = orders.getOrderItems();
+		
+		for(OrderItem or : items) {
+			OrderItemDTO itemDTO = new OrderItemDTO();
+			
+			itemDTO.setMa(or.getId()); 
+			itemDTO.setSoLuong(or.getSoLuong());
+			itemDTO.setThanhTien(or.getThanhTien());
+			ProductDTO productDTO = new ProductDTO();
+			productDTO.setMaSP(or.getProduct().getMaSP());
+			productDTO.setTenSP(or.getProduct().getTenSP());
+			productDTO.setDonVi(or.getProduct().getDonVi());
+			productDTO.setDonGia(or.getProduct().getDonGia());
+			itemDTO.setProduct(productDTO);
+			itemDTOs.add(itemDTO);
+		}
+		
+		
+		return itemDTOs;
+	}
+	
+	public void deleteOneOrderById(Integer id) {
+		orderDAO.deleteById(id);
 	}
 	
 
-
-//	public List<Orders> getAllOrder(){
-//		return orderDAO.findAll();
-//	}
-//	public List<OrderItem> getAllOrderItemByIdOrder(Integer id){
-//		OrderItem orderItem = new OrderItem();
-////		orderItem.setId(id);
-//		ExampleMatcher exampleMatcher = ExampleMatcher.matching()
-//				.withIgnorePaths("id")
-//				.withIgnorePaths("soLuong")
-//				.withIgnorePaths("thanhTien");
-//		return orderItemDAO.findAll(Example.of(orderItem, exampleMatcher));
-//
-//	}
 
 	
 	

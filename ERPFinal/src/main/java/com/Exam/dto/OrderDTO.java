@@ -3,8 +3,7 @@ package com.Exam.dto;
 import java.util.List;
 
 public class OrderDTO {
-	
-	
+	int id;
 	String ngay;
 	String tenKH;
 	String email;
@@ -21,6 +20,12 @@ public class OrderDTO {
 	
 	
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public List<OrderItemDTO> getOrderItems() {
 		return orderItems;
 	}

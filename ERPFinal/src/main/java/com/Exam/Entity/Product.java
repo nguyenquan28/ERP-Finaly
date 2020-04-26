@@ -62,7 +62,7 @@ public class Product {
 		this.donGia = donGia;
 		this.donVi = donVi;
 		this.soLuong = soLuong;
-		Size = size;
+		this.Size = size;
 		this.phanLoai = phanLoai;
 		this.giaGoc = giaGoc;
 		this.ngaySanXuat = ngaySanXuat;

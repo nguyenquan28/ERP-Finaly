@@ -39,6 +39,7 @@ import com.Exam.dto.ProductRequest;
 import com.Exam.service.GenerateExcel;
 import com.Exam.service.GenerateFileService;
 import com.Exam.service.MailService;
+import com.Exam.service.ReadNumberService;
 import com.sun.mail.iap.ByteArray;
 @Service
 public class MailServiceImplement implements MailService {
@@ -48,6 +49,9 @@ public class MailServiceImplement implements MailService {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private ReadNumberService read;
 	
 	@Autowired 
 	private GenerateFileService file;
@@ -81,11 +85,12 @@ public class MailServiceImplement implements MailService {
 	public void sendMailHelp(List<ProductRequest> products, List<EmailRequest> customers) throws IOException {
 		Context context = new Context();
 		
+		
 		int sum = products.stream().mapToInt(i-> i.getSum()).sum();
 //		
 		context.setVariable("sum", sum);
 		context.setVariable("products", products);
-		
+		context.setVariable("docchuso", read.docSo(sum));
 		
 		
 		

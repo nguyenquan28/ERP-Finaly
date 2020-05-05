@@ -118,8 +118,10 @@ public class OrderService {
 			productDTO.setMaSP(or.getProduct().getMaSP());
 			productDTO.setTenSP(or.getProduct().getTenSP());
 			productDTO.setDonVi(or.getProduct().getDonVi());
+			
 			productDTO.setDonGia(or.getProduct().getDonGia());
 			itemDTO.setProduct(productDTO);
+			
 			itemDTOs.add(itemDTO);
 		}
 		

@@ -41,7 +41,7 @@ public class OrderItemDTO {
 	}
 
 	public double getThanhTien() {
-		return thanhTien;
+		return this.soLuong*this.product.donGia;
 	}
 
 	public void setThanhTien(double thanhTien) {

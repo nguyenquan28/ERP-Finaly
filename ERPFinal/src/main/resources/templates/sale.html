@@ -469,7 +469,7 @@
 		 						/* console.log(data); */
 		 						for (let i = 0; i < data.length; i++) {
 		 							var rows = "";
-		 							rows += "<option value=" +data[i].maKM+ ">" + data[i].tenKM + "</option>";
+		 							rows += "<option value=" +data[i].phanTramKM+ ">" + data[i].tenKM + "</option>";
 		 							$(rows).appendTo("#discounts");
 		 						}
 		 			})
@@ -511,6 +511,7 @@
 		 					"ngaySanXuat" : product.ngaySanXuat,
 		 					"hanSuDung" : product.hanSuDung,
 		 					"tenSP" : product.tenSP,	
+		 					
 		 					"tongTien" : product.donGia*$("#amounts").val()
 		 				}
 						
@@ -556,9 +557,11 @@
 	                }
 				
 					let khuyenMai = $("#discounts").children("option:selected").val()
+					console.log(khuyenMai)
 		            let tongTien = thanhTien - (thanhTien/100*khuyenMai)
 	                document.getElementById("sum").innerText=thanhTien
 	                document.getElementById("s").innerText=khuyenMai+"%"
+	                
 	                document.getElementById("total").innerText=tongTien               
 					/* $.ajax({
 						url: "http://localhost:8080/company",
@@ -580,6 +583,7 @@
                 let cuaHang = $("#stores").children("option:selected").val()                                                           
                 let trangThai ="";
                 let payment = $("#payments").children("option:selected").val()
+                
                 let tongTien = parseInt(document.getElementById("total").textContent);
                 if(payment == 3){
                     trangThai ="Chưa thanh toán"

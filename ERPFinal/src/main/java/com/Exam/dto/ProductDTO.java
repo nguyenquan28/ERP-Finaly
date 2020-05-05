@@ -9,6 +9,11 @@ public class ProductDTO {
 	String tenSP;
 	int donGia;
 	String donVi;
+		
+	
+	
+	
+		
 	
 	
 	public int getMaSP() {

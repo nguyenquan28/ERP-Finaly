@@ -8,30 +8,39 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.apache.lucene.analysis.core.KeywordAnalyzer;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TermVector;
+
 @Entity(name = "product")
+@Indexed
 public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MaSP")
+	@DocumentId
 	int maSP;
-	@Column(name = "TenSP")
+	
+	@Field
 	String tenSP;
-	@Column(name = "DonGia")
+	
 	int donGia;
-	@Column(name = "DonVi")
+	
 	String donVi;
-	@Column(name = "SoLuong")
+	
 	int soLuong;
-	@Column(name = "Size")
+	
 	String Size;
-	@Column(name = "PhanLoai")
+	
 	String phanLoai;
-	@Column(name = "giaGoc")
+	
 	int giaGoc;
-	@Column(name = "ngaySanXuat")
+	
 	String ngaySanXuat;
-	@Column(name = "hanSuDung")
+	
 	String hanSuDung;
 
 

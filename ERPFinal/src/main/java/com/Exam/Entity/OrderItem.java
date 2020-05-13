@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.ContainedIn;
+
 @Entity
 public class OrderItem {
 	
@@ -24,6 +26,7 @@ public class OrderItem {
 	
 	@ManyToOne
 	@JoinColumn(name = "orders_id")
+	@ContainedIn
 	Orders order;
 	
 	

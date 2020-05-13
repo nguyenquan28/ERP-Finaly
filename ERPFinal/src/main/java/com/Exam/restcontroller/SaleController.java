@@ -15,7 +15,7 @@ import com.Exam.Entity.Product;
 import com.Exam.dto.OrderDTO;
 import com.Exam.dto.OrderItemDTO;
 import com.Exam.dto.ProductDTO;
-import com.Exam.service.OrderService;
+import com.Exam.Service.OrderService;
 
 @RestController
 @RequestMapping("/api")

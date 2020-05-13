@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-title" content="CodePen">
     <title>Medusa Shop</title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+   <link th:href="@{/resources/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+	<script th:src="@{/resources/jquery/jquery.min.js}"></script>
+	<script th:src="@{/resources/bootstrap/js/bootstrap.js}"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="admin.css">
@@ -17,222 +20,13 @@
 <body onload="ShowAllDataOrder()">
     <div class="container-fluid p-0">
 
-        <!-- Header -->
-        <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top d-flex p-2">
-
-            <!-- Logo -->
-            <a class="logo" href="#">
-                <img src="images/logomedusa.png" alt="" class="offset-2">
-            </a>
-
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="basicExampleNav">
-
-                <!-- Search -->
-                <form class="form-outline col-md-5 ">
-                    <div class="md-form my-0">
-                        <div>
-                            <input class="form-control mr-sm-2 d-flex flex-row bg-light" type="text"
-                                placeholder="Search for Name" aria-label="Search">
-                        </div>
-
-                        <div class="search_btn d-flex flex-row">
-                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- Notification -->
-                <ul class="navbar-nav nav-flex-icons offset-3">
-                    <li class="nav-item">
-                        <a class="nav-link noti-icon">
-                            <i class="fa fa-envelope-o mr-2"></i>
-                            <span class="number bg-success">+5</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link noti-icon">
-                            <i class="fa fa-bell-o mr-2" aria-hidden="true"></i>
-                            <span class="number bg-warning">+1</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link noti-icon">
-                            <i class="fa fa-cogs mr-3" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item avatar  pl-md-4" data-toggle="dropdown" >
-                        <img src="images/avt.png" alt="" class="dropdown-toggle" aria-haspopup="true"
-                        aria-expanded="false">
-                        <small style="color: #a8c5de">
-                            <a href="#">Administrator</a>
-                        </small>
-                    </li>
-
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button">
-                            <a href="">Trang chủ</a>
-                        </button>
-                        
-                            <form action="#" th:action="@{/logout}" method="POST">
-                            <button class="dropdown-item" type="submit">
-                            		LogOut
-						       </button>
-						    </form>
-                    </div>
-                </ul>
-
-            </div>
-
-            <!-- Collapsible content -->
-        </nav>
+        <div th:insert="fragments/header :: header"></div>
+		
 
         <!-- container -->
         <div class="row mt-5 pt-1" id="body-row">
-
-            <!-- Side bar -->
-            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-
-                <ul class="list-group">
-
-                    <li
-                        class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-                        <small><strong>Quản trị</strong></small>
-                    </li>
-
-                    <a href="#submenu1" data-toggle="collapse" aria-expanded="false"
-                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-dashboard fa-fw mr-3"></span>
-                            <span class="menu-collapsed">Bảng điều khiển</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
-                    <div id='submenu1' class="collapse sidebar-submenu">
-                        <a href="http://localhost:8080/" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-line-chart ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Báo cáo</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Đơn hàng</span>
-                        </a>
-
-                        <a href="http://localhost:8080/baogia" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-calendar-check-o ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Báo giá</span>
-                        </a>
-                    </div>
-                    <a href="#submenu2" data-toggle="collapse" aria-expanded="false"
-                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-user fa-fw mr-3"></span>
-                            <span class="menu-collapsed">Thông tin</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
-                    <div id='submenu2' class="collapse sidebar-submenu">
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Nhân viên</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Khách hàng</span>
-                        </a>
-                    </div>
-
-                    <a href="#submenu3" data-toggle="collapse" aria-expanded="false"
-                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-tasks fa-fw mr-3"></span>
-                            <span class="menu-collapsed">Công nợ</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
-                    <div id='submenu3' class="collapse sidebar-submenu" >
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-info-circle ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Phải thu</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Phải trả</span>
-                        </a>
-                    </div>
-
-                    <li
-                        class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-                        <small><strong>Tùy chọn</strong></small>
-                    </li>
-
-                    <a href="#submenu4" data-toggle="collapse" aria-expanded="false"
-                        class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-shopping-cart fa-fw mr-3"></span>
-                            <span class="menu-collapsed">Bán hàng</span>
-                            <span class="submenu-icon ml-auto"></span>
-                        </div>
-                    </a>
-
-                    <div id='submenu4' class="collapse sidebar-submenu">
-                        <a href="http://localhost:8080/sales" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-plus-circle ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Bán hàng</span>
-                        </a>
-
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-refresh ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed" data-toggle="modal" data-target="#myModal1">Đổi hàng</span>
-                        </a>
-
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                            <span class="fa fa-user-circle-o ml-2 mr-2" aria-hidden="true"></span>
-                            <span class="menu-collapsed">Tạo tài khoản</span>
-                        </a>
-                    </div>
-
-                    <a href="http://localhost:8080/warehouse" class="bg-dark list-group-item list-group-item-action" >
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-calendar fa-fw mr-3"></span>
-                            <span class="menu-collapsed">Kho hàng</span>
-                        </div>
-                    </a>
-
-                    <a href="#" class="bg-dark list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-search fa-fw mr-3"></span>
-                            <span class="menu-collapsed">Tìm kiếm</span>
-                        </div>
-                    </a>
-
-                    <a href="#" class="bg-dark list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="fa fa-envelope-o fa-fw mr-3"></span>
-                            <span class="menu-collapsed">Messages
-                                <!-- <span class="badge badge-pill badge-primary ml-2">5</span> -->
-                            </span>
-                        </div>
-                    </a>
-
-                    <li class="list-group-item sidebar-separator menu-collapsed"></li>
-
-                    <a href="#" data-toggle="sidebar-colapse"  class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span id="collapse-icon" class="fa fa-2x mr-3"></span>
-                        </div>
-                    </a>
-                </ul>
-            </div>
+				<div th:insert="fragments/sidebar :: sidebar"></div>
+          
             <!-- order -->
             <div class="order">
                 <div class="order-path row">
@@ -244,27 +38,29 @@
                     <div class="col-md-5 row">
 
                         <div class="input-donhang col-8">
-                            <label for="text">Search :</label>
-                            <input type="text" id="" class="inputsearchdonhang" >
+                            
                         </div>
                     </div>                     
                 </div>
                 <div class="order-show mt-2">
-                    <table style="width: 100%;">
+                	
+                		
+                		<h3 class="text  text-center text-title mt-4 mb-4" >Danh sách đơn hàng</h3>
+                	<div style="float: right">
+                		<i class="fas fa-search" style="position: absolute;left: 95%;top: 27.5%;color: #009879"></i>
+                		<input type="text" class="form-control" placeholder="id,name,email..." style="width: 250px" id="search-input">
+                	</div>
+                    <table style="width: 100%;" class="table content-table table-bordered table-striped" >
+                    
                         <thead>
-                            <tr class="title row">
-                                <th class="col-2">Ngay Tao</th>
-                                <th class="col-2">Ma Don Hang</th>
-                                <th class="col-4">Thong Tin Dat Hang</th>
-                                <th class="col-1">Thanh Tien</th>
-                                <th class="col-2">
-                                    <select class="" id="selectTrangThai" style="border: 0; background: transparent;">
-                                        <option selected>Trang Thai</option>
-                                        <option value="Asc">Da Thanh Toan</option>
-                                        <option value="Desc">Chua Thanh Toan</option>
-                                      </select>
-                                </th>
-                                <th class="col-1"></th>
+                            <tr class="title ">
+                                <th >Ngày</th>
+                                <th >Mã đơn</th>
+                                <th >Tên khách hàng</th>
+                                <th>email</th>
+                                <th >Thành tiền</th>
+                                <th >Trạng thái</th>
+                                <th></th>
                                 
                             </tr>
                         </thead>
@@ -284,13 +80,32 @@
                                     <i type="button" data-toggle="modal" data-target="#exampleModal${order.id}" class="fas fa-info-circle text-warning"></i>
                                     </td>
                             	</tr>
+                            	<select class="" id="selectTrangThai" style="border: 0; background: transparent;color: white">
+                                        <option selected style="color: black">Trạng thái</option>
+                                        <option value="Asc" style="color: black">Đã thanh toán</option>
+                                        <option value="Desc" style="color: black">Chưa thanh toán</option>
+                                      </select>
                             </th:block> -->
                         </tbody>
                     </table>
                     
                 </div>
-
+				 
+		            	<div class="button-phantrang ">
+		            		 <div class="form-group form-inline" >
+		            	 	<button class="btn  form-control" id="button-first" onclick="buttonFirst()">First</button>
+		            		<button class="btn  form-control" id ="button-pre" onclick="buttonPre()"><i class="fas fa-arrow-left"></i></button>
+		            		<input type="text" value="1" style="text-align: center;width: 50px"  class="form-control" id="input-page-number">
+		            		<button class="btn form-control" id ="go" onclick="buttonGo()" type="submit">Go</button>
+		            		<button class="btn  form-control" id ="button-next" onclick="buttonNext()"><i class="fas fa-arrow-right"></i></button>
+		            		<button class="btn  form-control" id ="button-last" onclick="buttonLast()">Last</button>
+		            	
+		            	 </div>
+		            	</div>
+            
             </div>
+            
+           
             <!-- End----------------------------------------------------------------------------------------------------------------- -->
 
            
@@ -307,23 +122,197 @@
         </div>
     </div>
 
-    <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+    <script th:src="@{/resources/jquery/jquery.min.js}"></script>
+	<script th:src="@{/resources/bootstrap/js/bootstrap.js}"></script>
     <script src="main.js"></script>
     <script src="tablesort.js"></script>
     <script src="doiHang.js"></script>
 
     <script>
-
+		
+    	let search = document.getElementById('search-input')
+    	search.addEventListener('input',function(){
+    		
+    		searchText = search.value
+    		console.log(searchText)
+    		if(searchText !=""){
+    			$.ajax({
+        			url:"http://localhost:8080/api/search?q="+searchText+"&pageNumber="+0
+        		}).then(function(data){
+        			document.getElementById("input-page-number").value=1
+        			ShowDataOrder(data)
+        			addModalOrdel(data)
+        		})
+    		}else{
+    			 $.ajax({url: "http://localhost:8080/admin/getAllOrder?page-number="+0})
+                 .then(function(dataOrder){ 
+                	 document.getElementById("input-page-number").value=1
+                     ShowDataOrder(dataOrder);
+                     addModalOrdel(dataOrder)
+                     
+                 })
+    		}
+    		
+    		
+    	})
+    	
+    
+    	function buttonFirst(){
+    		if(search.value != ""){
+    			$.ajax({
+        			url:"http://localhost:8080/api/search?q="+search.value+"&pageNumber="+0
+        		}).then(function(data){
+        			document.getElementById("input-page-number").value=1
+        			ShowDataOrder(data)
+        			addModalOrdel(data)
+        		})
+    			
+    		}else{
+    			$.ajax({url: "http://localhost:8080/admin/getAllOrder?page-number="+0})
+                .then(function(dataOrder){ 
+                	document.getElementById("input-page-number").value=1
+                    ShowDataOrder(dataOrder);
+                    addModalOrdel(dataOrder)
+                })
+    		}  		  		
+    	}
+    	function buttonPre(){
+    		i = document.getElementById("input-page-number")
+    		if(search.value != ""){
+    			if(i.value > 1 ) {
+    				$.ajax({
+            			url:"http://localhost:8080/api/search?q="+search.value+"&pageNumber="+(i.value-2)
+            		}).then(function(data){
+            			i.value -=1
+            			ShowDataOrder(data)
+            			addModalOrdel(data)
+            		})
+    			}
+    			
+    		}else{
+    			    		
+        		if(i.value > 1){
+        			$.ajax({url: "http://localhost:8080/admin/getAllOrder?page-number="+(i.value-2)})
+                    .then(function(dataOrder){
+                    	
+                    	i.value -=1
+                        ShowDataOrder(dataOrder);
+                        addModalOrdel(dataOrder)
+                    })
+        		}
+    		}
+    		
+            
+    		
+    	}
+    	function buttonGo(){
+    		i = document.getElementById("input-page-number")  
+    		if(search.value != ""){
+    			$.ajax({
+        			url:"http://localhost:8080/api/search?q="+search.value+"&pageNumber="+(i.value-1)
+        		}).then(function(data){
+        			
+        			ShowDataOrder(data)
+        			addModalOrdel(data)
+        		})
+    			
+    		}else{
+			$.ajax({url: "http://localhost:8080/admin/getAllOrder?page-number="+(i.value-1)})
+    			
+                .then(function(dataOrder){                	                	
+                    ShowDataOrder(dataOrder);
+                    addModalOrdel(dataOrder)
+                })
+    		}
+    		
+    		    		           
+    		
+    	}
+    	function buttonNext(){
+    		i = document.getElementById("input-page-number")   
+    		
+    		if(search.value != ""){
+    				let count = 0 
+    				$.ajax({
+						url:"http://localhost:8080/api/last-page-search-result?q="+search.value
+					}).then(function(resultCount){
+						if ( i.value <= resultCount ){
+	    					$.ajax({
+	                			url:"http://localhost:8080/api/search?q="+search.value+"&pageNumber="+(i.value)
+	                		}).then(function(data){
+	                			i.value = parseInt(i.value)+1
+	                			ShowDataOrder(data)
+	                			addModalOrdel(data)
+	                		})
+	    				}
+					})
+    				
+    			
+    			
+    		}else{
+    			    		
+    			$.ajax({url: "http://localhost:8080/admin/getAllOrder?page-number="+(i.value)})   			
+                .then(function(dataOrder){                        	
+					i.value = parseInt(i.value)+1
+                    ShowDataOrder(dataOrder);
+                    addModalOrdel(dataOrder)
+                }) 
+    		}
+    		
+    		   		           
+    			
+    	}			
+    	
+    	
+    	
+    		
+    		
+    	function buttonLast(){
+    		i = document.getElementById("input-page-number")   	
+    		if(search.value != ""){
+    			
+				$.ajax({
+					url:"http://localhost:8080/api/last-page-search-result?q="+search.value
+				}).then(function(count){
+					$.ajax({
+        			url:"http://localhost:8080/api/search?q="+searchText+"&pageNumber="+count
+        				}).then(function(data){
+        			i.value = count+1
+        			ShowDataOrder(data)
+        			addModalOrdel(data)
+        		})
+			
+				})
+			
+		}else{
+			    		
+			$.ajax({
+    			url:"http://localhost:8080/admin/last-page"
+    		}).then (function(count){
+    			
+    			
+    			$.ajax({url: "http://localhost:8080/admin/getAllOrder?page-number="+count})   			
+                .then(function(dataOrder){                     	
+					i.value = count+1
+                    ShowDataOrder(dataOrder);
+                    addModalOrdel(dataOrder)
+                })  
+    		})	
+		}
+    		
+    		           
+    			
+    	} 		           
+    			
+    	
+    
         //show all data order
         function ShowAllDataOrder(){
-            $.ajax({url: "http://localhost:8080/admin/getAllOrder"})
+            $.ajax({url: "http://localhost:8080/admin/getAllOrder?page-number="+0})
                 .then(function(dataOrder){ 
                     ShowDataOrder(dataOrder);
-                    addModalOrdel(dataOrder);
-                    sortTrangThai(dataOrder)
+                    addModalOrdel(dataOrder)
+                    
                 })
         }
         function ShowDataOrder(dataOrder){            
@@ -334,15 +323,16 @@
                 	
                     let contents = "";
                         contents +=`
-                            <tr class="row">
-                                <td class="col-2">${dataOrder[i].ngay}</td>
-                                <td class="col-2">${dataOrder[i].id} </td>
-                                <td class="col-4">${dataOrder[i].tenKH} / ${dataOrder[i].phone} / ${dataOrder[i].diaChi}.</td>
-                                <td class="col-1">${dataOrder[i].tongTien}</td>
-                                <td class="col-2 text-danger">${dataOrder[i].trangThai}</td>
-                                <td class="col-1">
-                                <i class="fas fa-trash-alt text-danger" onclick="deleteOneOrderById(${dataOrder[i].id})"></i>
-                                <i type="button" data-toggle="modal" data-target="#exampleModal${dataOrder[i].id}" class="fas fa-info-circle text-warning"></i>
+                            <tr >
+                                <td>${dataOrder[i].ngay}</td>
+                                <td>${dataOrder[i].id} </td>
+                                <td>${dataOrder[i].tenKH}</td>
+                                <td>${dataOrder[i].email}</td>
+                                <td>${dataOrder[i].tongSoTien}</td>
+                                <td class=>${dataOrder[i].trangThai}</td>
+                                <td class="">
+                               
+                                <i type="button" data-toggle="modal" data-target="#exampleModal${dataOrder[i].id}" class="fas fa-info-circle  icon"></i>
                                 </td>
                             </tr>`;
                         $(contents).appendTo(table);
@@ -367,7 +357,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header pb-0">
                                         <div class="d-flex flex-column">
-                                            <h5 class="modal-title" id="exampleModalLabel">Ma Don Hang : ${dataModal[i].id}</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Mã đơn hàng : ${dataModal[i].id}</h5>
                                             <p>${dataModal[i].ngay}</p>
                                         </div>
                                         
@@ -377,7 +367,7 @@
                                     </div>
                                     
                                     <div class="MD-order-tt">
-                                        <div class="btn col-12 row">
+                                        <div class="col-12 row">
                                             <div class="MD-order-title col-md-4 text-right float-left">
                                                 <p>Khách Hàng :</p>
                                                 <p>Địa chỉ :</p>
@@ -394,14 +384,14 @@
                                     </div>
                                     
                                     <div class="" style="border: 1px solid black;">
-                                        <table style="width: 100%;">
+                                        <table style="width: 100%;" class="modal-table">
                                             <thead>
                                                 <tr class="title row">
-                                                    <th class="col-2">Ma San Pham</th>
-                                                    <th class="col-4">Ten San Pham</th>                                                    
-                                                    <th class="col-2">Don Gia</th>
-                                                    <th class="col-1">So Luong</th>
-                                                    <th class="col-3">Thanh Tien</th>                                                    
+                                                    <th class="col-2 ">Mã sản phẩm</th>
+                                                    <th class="col-4">Tên sản phẩm</th>                                                    
+                                                    <th class="col-2">Đơn giá</th>
+                                                    <th class="col-1">Số lượng</th>
+                                                    <th class="col-3">Thành tiền</th>                                                    
                                                 </tr>
                                             </thead>
                                             <tbody id="MD_table_Pd${dataModal[i].id}">
@@ -436,7 +426,7 @@
                                     </div>
                                     
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>          
+                                        <button type="button" class="btn " data-dismiss="modal">Close</button>          
                                     </div>
                                 </div>
                             </div>
@@ -454,11 +444,11 @@
                                     let contentsModalPd = "";
                                         contentsModalPd +=`
                                         <tr class="row">
-                                            <td class="col-2">${data_MD_Pd[i].product.maSP}</td>
-                                            <td class="col-4">${data_MD_Pd[i].product.tenSP} </td>
-                                            <td class="col-2">${data_MD_Pd[i].product.donGia} ${data_MD_Pd[i].product.donVi}</td>
-                                            <td class="col-1">${data_MD_Pd[i].soLuong}</td>                                          
-                                            <td class="col-3">${data_MD_Pd[i].thanhTien}</td>                                            
+                                            <td class="col-2 text-center">${data_MD_Pd[i].product.maSP}</td>
+                                            <td class="col-4 text-center ">${data_MD_Pd[i].product.tenSP} </td>
+                                            <td class="col-2 text-center">${data_MD_Pd[i].product.donGia}</td>
+                                            <td class="col-1 text-center">${data_MD_Pd[i].soLuong}</td>                                          
+                                            <td class="col-3 text-center">${data_MD_Pd[i].thanhTien}</td>                                            
                                         </tr>`;
                                         $(contentsModalPd).appendTo(MD_table_Pd);
                                 }
@@ -468,39 +458,7 @@
                 }                
 
         }
-        function sortTrangThai(datas){
-                $("#selectTrangThai").change(function(){              
-                
-                let slt = $("#selectTrangThai").val();         
-                    if (slt ==="Desc") {
-                        datas.sort(function(a,b){
-                            var trangThaia = a.trangThai.toUpperCase();
-                            var trangThaib = b.trangThai.toUpperCase();
-                            if(trangThaia < trangThaib){
-                                return -1;
-                            }
-                            if(trangThaia > trangThaib){
-                                return 1;
-                            }
-                            return 0;
-                        })
-                    }else{
-                        datas.sort(function(a,b){
-                            var trangThaia = a.trangThai.toUpperCase();
-                            var trangThaib = b.trangThai.toUpperCase();
-                            if(trangThaia > trangThaib){
-                                return -1;
-                            }
-                            if(trangThaia < trangThaib){
-                                return 1;
-                            }
-                            return 0;
-                        })
-                    }  
-                    console.log(datas)       
-                ShowDataOrder(datas);
-                });
-            };
+        
     </script>
     
 </body>

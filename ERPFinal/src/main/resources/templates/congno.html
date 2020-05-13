@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <title>Medusa Shop</title>
+    <link th:href="@{/resources/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    
+    
+    <link rel="stylesheet" href="admin.css">
+    
+    
+    <link rel="stylesheet" href="css/modal-doihang.css">
+    <style type="text/css">
+    	.icon:hover{
+    		cursor: pointer;
+    	}
+    	.icon {
+    	margin-left: 10px;
+    	color: rgb(233,76,161);
+    	font-size: 20px
+    	
+    	}
+    	.text-title{
+    		color :rgb(233,76,161);
+    		margin-top:35px;
+    		margin-bottom: 45px;
+    		font-weight: 900;
+    		letter-spacing: 1.2px;
+    		font-size: 30px;
+    	}
+    	.order{
+		    width: calc(100% - 230px);
+		    height: 470px;
+		}
+    	.order-show{
+		    width: 100%;
+		    height: 500px;
+		   	padding-top: 20px;
+		   	padding-bottom: 50px;
+		   	padding-left: 50px;
+		   	padding-right: 50px;
+		}
+    	.content-table thead tr {	
+    		background: rgb(233,76,161);
+    		text-align: center;
+    		color: #fff;
+    		
+    	}
+    	.content-table thead tr th {	   		
+    		font-size: 0.9em;
+    		text-transform: uppercase;
+    	}
+    	.content-table tbody tr td {	   		
+    		font-size: 0.9em;    		
+    		font-weight: 600;
+    		text-align: center;
+    	}
+    	.button-phantrang {
+    		
+    		float: right;
+    		
+    		
+    	}
+    	.btn {
+    		background: rgb(233,76,161);
+    		color: #fff;
+    	}
+        </style>
+</head>
+
+<body  >
+    <div class="container-fluid p-0">
+
+       <div th:insert="fragments/header :: header"></div>
+		
+        <!-- container -->
+        <div class="row mt-5 pt-1" id="body-row">
+			<div th:insert="fragments/sidebar :: sidebar">...</div>
+            
+            <!-- order -->
+            <div class="order">
+                <div class="order-path row">
+                    <div class=" col-md-4 mt-2">
+                        
+                    </div>
+                    <div class="col"></div> 
+                    <div class="col-md-5 row">
+
+                        <div class="input-donhang col-8">
+                            
+                        </div>
+                    </div>                     
+                </div>
+                <div class="order-show ">
+                <h4 class="text text-center text-title" >Danh sách khách hàng chưa thanh toán</h4>
+                <div style="float: right;">
+                	<input class="form-control" type="text" id="search">
+                </div>
+                    <table style="width: 100%; background-color: #fff " class="table content-table table-bordered table-striped" id="my-table">
+                        <thead>
+                            <tr >
+                                <th >Ngày</th>
+                                <th >Mã đơn</th>
+                                <th >Tên khách Hàng</th>                              
+                                <th >Số điện thoại</th>
+                                <th>Email</th>
+                                <th >Số tiền nợ</th>
+                                <th ></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                        	 <th:block th:each="order : ${list}">
+                            	<tr >
+                                	<td  th:text="${order.ngay}" ></td>
+                                	<td  th:text="${order.id}" id="ma-don"> </td>
+                                	<td  th:text="${order.tenKH}"></td>                               	
+                                	<td  th:text="${order.phone}"> </td>
+                                	<td  th:text="${order.email}"> </td>
+                                    <td  th:text="${order.tongSoTien}"></td>    
+                                    
+                                	<td >     
+                                	<i class="fab fa-paypal icon" th:onclick="'showModalPay('+${order.id}+')'"></i>                                   	                		
+                                	<i class="fa fa-envelope-o  icon" th:onclick="'showModalSendMail('+${order.id}+')'" ></i> 
+                                	</td>                             
+                            	</tr>
+                            </th:block> 
+                        </tbody>
+                    </table>
+                    <div class="button-phantrang ">
+		            		 <div class="form-group form-inline" >
+		            	 	<button class="btn  form-control" id="button-first" onclick="buttonFirst()">First</button>
+		            		<button class="btn  form-control" id ="button-pre" onclick="buttonPre()"><i class="fas fa-arrow-left"></i></button>
+		            		<input type="text" value="1" style="text-align: center;width: 50px"  class="form-control" id="input-page-number">
+		            		<button class="btn form-control" id ="go" onclick="buttonGo()">Go</button>
+		            		<button class="btn  form-control" id ="button-next" onclick="buttonNext()"><i class="fas fa-arrow-right"></i></button>
+		            		<button class="btn  form-control" id ="button-last" onclick="buttonLast()">Last</button>
+		            	
+		            	 </div>
+		            	</div>
+                </div>
+				
+            </div>
+            <!-- End----------------------------------------------------------------------------------------------------------------- -->
+
+           
+
+
+<!-- Modal mail -->
+    
+    <div class="modal fade modal-mail" id="modal-mail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="width: 500px;height: 500px;margin:30vh auto"  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Gởi gì đó đến khách hàng thân yêu <i class="fas fa-heart text-danger"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	<input class="form-control" type="text" value="alo...alo đến hẹn trả nợ rồi bạn eiii">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn " id="button-send-mail" data-dismiss="modal" onclick="sendMail(this.value)">Gởi mail</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal mail -->
+
+<div class="modal fade modal-pay" id="modal-pay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="width: 500px;height: 500px;margin:30vh auto"  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cập nhập đơn hàng</i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn " id="button-thanh-toan" data-dismiss="modal" onclick="pay(this.value)">Đã thanh toán</button>
+        <button type="button" class="btn "  data-dismiss="modal" value="id">Hủy</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    
+	
+
+
+        </div>
+    </div>
+
+    <script th:src="@{/resources/jquery/jquery.min.js}"></script>
+	<script th:src="@{/resources/bootstrap/js/bootstrap.js}"></script>
+    <script src="main.js"></script>
+
+    <script>
+    
+    
+     
+
+    function buttonFirst(){
+		$.ajax({url: "http://localhost:8080/api/list-chua-thanh-toan?page-number="+0})
+        .then(function(data){ 
+        	console.log(data)
+        	document.getElementById("input-page-number").value=1
+            ShowDataOrder(data);
+           
+        })
+        
+		
+	}
+	function buttonPre(){
+		
+		i = document.getElementById("input-page-number")
+		
+		if(i.value > 1){
+			$.ajax({url: "http://localhost:8080/api/list-chua-thanh-toan?page-number="+(i.value-2)})
+            .then(function(data){
+            	console.log(data)
+            	i.value -=1
+                ShowDataOrder(data);
+                
+            })
+		}
+        
+		
+	}
+	function buttonGo(){
+		i = document.getElementById("input-page-number")    		
+		$.ajax({url: "http://localhost:8080/api/list-chua-thanh-toan?page-number="+(i.value-1)})
+			
+            .then(function(data){      
+            	console.log(data)
+                ShowDataOrder(data);
+                
+            })
+		    		           
+		
+	}
+	function buttonNext(){
+		i = document.getElementById("input-page-number")   		
+		$.ajax({url: "http://localhost:8080/api/list-chua-thanh-toan?page-number="+(i.value)})   			
+            .then(function(data){ 
+            	console.log(data)
+				i.value = parseInt(i.value)+1
+                ShowDataOrder(data);
+                
+            })    		           
+			
+	}			
+	
+	
+		
+	function buttonLast(){
+		$.ajax({
+			url:"http://localhost:8080/api/last-page"
+		}).then (function(count){
+			i = document.getElementById("input-page-number")   	
+			
+			$.ajax({url: "http://localhost:8080/api/list-chua-thanh-toan?page-number="+count})   			
+            .then(function(data){   
+            	console.log(data)
+				i.value = count+1
+                ShowDataOrder(data);
+               
+            })  
+		})	           
+			
+	} 
+		function showModalSendMail(id){
+			document.getElementById('button-send-mail').value=id
+			$('#modal-mail').modal('show'); 
+		}
+                 		
+        function sendMail(id){        	  
+        	
+        	     	
+        	$.ajax({
+        		url : "http://localhost:8080/api/goi-mail-thu-no?id="+id,
+        		success:function(){
+        			alert("Gởi mail thành công!!!")
+        		}
+        		     		       		
+        	})
+        }
+        function showModalPay(id){        	  
+        	document.getElementById('button-thanh-toan').value=id
+        	$('#modal-pay').modal('show');      	      	       	
+        	
+        	
+        }
+        
+        function pay(id){
+        	
+        	$.ajax({
+        		url:"http://localhost:8080/api/cap-nhap-don-hang?id="+id+"&trangthai=Đã thanh toán",
+        		success:function(){
+        			alert("Cập nhập thành công!!!")
+        			$.ajax({url: "http://localhost:8080/api/list-chua-thanh-toan?page-number="+0})
+        .then(function(data){ 
+        	console.log(data)
+        	document.getElementById("input-page-number").value=1
+            ShowDataOrder(data);
+           
+        })
+        		}
+        	})
+        	
+        	
+        }
+        
+         
+        function ShowDataOrder(data){
+        	 let tableBody = document.getElementById('table-body')
+          	 let content= ""
+          	 for (let i = 0 ; i < data.length;i++){
+          		 content+= `
+          		 	<tr>
+          		 		<td>${data[i].ngay}</td>
+          		 		<td>${data[i].id}</td>
+          		 		<td>${data[i].tenKH}</td>
+          				<td>${data[i].phone}</td>
+          				<td>${data[i].email}</td>
+          				<td>${data[i].tongSoTien}</td>
+          				<td>
+          				<i class="fab fa-paypal icon" onclick=showModalPay(${data[i].id})></i>                                   	                		
+                   		<i class="fa fa-envelope-o  icon" onclick=showModalSendMail(${data[i].id}) ></i>
+          				</td>
+          		 	</tr>
+          		 	
+          		 `
+          	 }
+          	tableBody.innerHTML = content
+          	 
+           }                        
+
+        let search = document.getElementById('search')
+        search.addEventListener('input',function(){
+        	console.log(search.value)
+        	if(search.value !=""){
+        		
+        		$.ajax({
+        			url:"http://localhost:8080/api/tim-khach-hang-chua-thanh-toan?q="+search.value
+        		}).then(function(data){
+        			console.log(data)
+        			ShowDataOrder(data);
+        		})
+        	}else{
+        		$.ajax({url: "http://localhost:8080/api/list-chua-thanh-toan?page-number="+0})
+                .then(function(data){
+                	console.log(data)
+                	document.getElementById("input-page-number").value=1
+                    ShowDataOrder(data);
+                   
+                })
+        	}
+        	
+        })
+        
+    </script>
+    
+</body>
+
+</html>

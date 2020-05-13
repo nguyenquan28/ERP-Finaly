@@ -19,6 +19,12 @@
 	</properties>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>bootstrap</artifactId>
+		    <version>4.0.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -56,6 +62,15 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-search-orm</artifactId>
+		    <version>5.11.1.Final</version>
+		</dependency>
+
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -72,6 +87,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		
 	</dependencies>
 
 	<build>

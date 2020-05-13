@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+table ,th,td{
+   
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+.table {
+    width: 70%;
+    
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+	<h1 style="margin-left: 300px">THÔNG BÁO THU NỢ</h1>
+	<h5>Kính gởi :<strong th:text="${tenKH}"></strong> </h5>
+	
+	<p>Đề nghị quý khách hàng thanh toán các hóa đơn sau : </p>
+	
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Mã sản phẩm</th>
+				<th>Tên sản phẩm</th>
+				<th>Số lượng sản phẩm</th>
+				<th>Thành tiền</th>
+				
+			</tr>
+			
+		</thead>
+		
+		 <tbody>
+		 	<th:block th:each="item : ${listItemDTO}">
+		 			<tr>
+		 				<td th:text="${item.ma}"></td>
+		 				<td th:text="${item.product.tenSP}"></td>
+		 				<td th:text="${item.soLuong}"></td>
+		 				<td th:text="${item.thanhTien}"></td>
+		 			</tr>
+		 	
+		 	</th:block>
+		 	<tr>
+		 		<td colspan="1">Tổng</td>
+		 		<td colspan="3" th:text="${tongTien}"></td>
+		 	</tr>
+		 	<tr>
+		 		<td colspan="1">Bằng chữ</td>
+		 		<td colspan="3" th:text="${tongTienBangChu}"></td>
+		 	</tr>
+		 </tbody>
+	</table>
+	
+	<h4>- Quý khách có thể thanh toán trực tiếp hoặc chuyển khoản tại : </h4>
+	<p style="color: red;">+ Số tài khoản : 0123456789</p>
+	<p style="color: red;">+ Người thụ hưởng : Chủ tịch Nguyễn Văn Quân</p>
+	<p style="color: red;">+ Tên ngân hàng : VanQuanBank</p>
+	
+	
+	
+</div>
+
+</body>
+</html>

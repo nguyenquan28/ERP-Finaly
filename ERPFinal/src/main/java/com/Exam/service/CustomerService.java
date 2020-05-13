@@ -1,4 +1,4 @@
-package com.Exam.service;
+package com.Exam.Service;
 
 import java.util.List;
 
@@ -14,5 +14,7 @@ public interface CustomerService {
 	public List<Customer>findAll ();
 	
 	public List<Customer>getCustomerByListId(List<Integer>ids);
+	
+	public List<Customer>search(String q);
 }
 

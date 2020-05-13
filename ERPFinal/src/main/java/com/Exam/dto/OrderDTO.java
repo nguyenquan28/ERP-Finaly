@@ -14,12 +14,18 @@ public class OrderDTO {
 	String trangThai;			
 	int tongTien;
 	List<OrderItemDTO>orderItems; 
+	String tongSoTien;
 	
 	
 	
 	
 	
-	
+	public String getTongSoTien() {
+		return tongSoTien;
+	}
+	public void setTongSoTien(String tongSoTien) {
+		this.tongSoTien = tongSoTien;
+	}
 	public int getId() {
 		return id;
 	}

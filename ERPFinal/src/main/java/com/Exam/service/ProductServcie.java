@@ -1,4 +1,4 @@
-package com.Exam.service;
+package com.Exam.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +15,8 @@ import com.Exam.Entity.Product;
 public interface ProductServcie {
 	
 	//lay tat ca du lieu cua san pham
+	public List<Product> getProduct(int pageNumber);
+	
 	public List<Product> getAllProduct();
 	//tim kiem trong kho theo ten
 	public List<Product> SelectByName(String nameSP);
@@ -25,8 +27,8 @@ public interface ProductServcie {
 //	Save Product in Carts
 	public void insertOneProduct(Product product) ;
 	
-	
+	public List<Product>search(String q);
 		
-		
+	public int productCount();
 	
 }

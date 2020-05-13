@@ -1,4 +1,4 @@
-package com.Exam.service.implement;
+package com.Exam.Service.implement;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,6 +20,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.hibernate.pretty.MessageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.core.io.ByteArrayResource;
@@ -35,11 +36,13 @@ import com.Exam.ErpFinalApplication;
 import com.Exam.Entity.Customer;
 import com.Exam.Entity.Product;
 import com.Exam.dto.EmailRequest;
+import com.Exam.dto.OrderDTO;
+import com.Exam.dto.OrderItemDTO;
 import com.Exam.dto.ProductRequest;
-import com.Exam.service.GenerateExcel;
-import com.Exam.service.GenerateFileService;
-import com.Exam.service.MailService;
-import com.Exam.service.ReadNumberService;
+import com.Exam.Service.GenerateExcel;
+import com.Exam.Service.GenerateFileService;
+import com.Exam.Service.MailService;
+import com.Exam.Service.ReadNumberService;
 import com.sun.mail.iap.ByteArray;
 @Service
 public class MailServiceImplement implements MailService {
@@ -108,6 +111,27 @@ public class MailServiceImplement implements MailService {
 			}
 		});
 		
+		
+	}
+
+	@Override
+	public void send(String to,String subject, String htmlPage, Context context) throws IOException {
+		String htmlContent = this.template.process(htmlPage, context);
+		try {
+			MimeMessage message = this.mailSender.createMimeMessage();
+			MimeMessageHelper helper = new  MimeMessageHelper(message,true,"utf-8");
+			helper.setFrom("nguyenhoangvu12c5@gmail.com");
+			helper.setTo(to);
+			helper.setSubject(subject);
+			helper.setText(htmlContent, true);
+			
+			this.mailSender.send(message);
+			
+			
+					
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 	

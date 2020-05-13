@@ -1,4 +1,4 @@
-package com.Exam.service.implement;
+package com.Exam.Service.implement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +8,18 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.Exam.DAO.CustomerDAO;
+import com.Exam.DAO.SearchCustomerDAO;
 import com.Exam.Entity.Customer;
-import com.Exam.service.CustomerService;
+import com.Exam.Service.CustomerService;
 @Service
 public class CustomerServiceImplement implements CustomerService{
+	
+	@Autowired SearchCustomerDAO searchCustomerDAO;
 	
 	@Autowired
 	CustomerDAO dao;
 	
-	@Override
-	@Cacheable("customers")
+	@Override	
 	public List<Customer> findAll() {
 		
 		return dao.findAll();
@@ -32,4 +34,11 @@ public class CustomerServiceImplement implements CustomerService{
 		return list;
 	}
 
+	@Override
+	public List<Customer> search(String q) {
+		
+		return searchCustomerDAO.search(q);
+	}
+	
+	
 }

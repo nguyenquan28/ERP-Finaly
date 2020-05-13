@@ -1,4 +1,4 @@
-package com.Exam.service.implement;
+package com.Exam.Service.implement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,22 +8,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.Exam.DAO.ProductDAO;
+import com.Exam.DAO.SearchProductDAO;
 import com.Exam.Entity.Product;
-import com.Exam.service.ProductServcie;
+import com.Exam.Service.ProductServcie;
 
 @Service
 public class ProductServiceImplement implements ProductServcie{
 	@Autowired
 	ProductDAO productDAO;
 	
+	@Autowired
+	SearchProductDAO searchProductDAO;
+	
 	//lay tat ca du lieu cua san pham
-	@Cacheable("products")
-	public List<Product> getAllProduct(){
-		return productDAO.findAll();
+	
+	public List<Product> getProduct(int pageNumber){
+		return productDAO.findAll(PageRequest.of(pageNumber, 7)).toList();
 	}
+	
 	//tim kiem trong kho theo ten
 	public List<Product> SelectByName(String nameSP){
 		Product product = new Product();
@@ -46,6 +53,22 @@ public class ProductServiceImplement implements ProductServcie{
 //	Save Product in Carts
 	public void insertOneProduct(Product product) {
 		productDAO.save(product);
+	}
+	@Override
+	public List<Product> search(String q) {
+		
+		return searchProductDAO.search(q);
+	}
+	@Override
+	public List<Product> getAllProduct() {
+		return productDAO.findAll();
+		
+	}
+
+	@Override
+	public int productCount() {
+		// TODO Auto-generated method stub
+		return productDAO.productCount();
 	}
 	
 }

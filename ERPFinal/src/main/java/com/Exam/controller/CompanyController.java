@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Exam.Entity.Company;
-import com.Exam.service.CompanyService;
+import com.Exam.Service.CompanyService;
 
 @RestController
 public class CompanyController {

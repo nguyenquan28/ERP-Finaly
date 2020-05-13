@@ -5,6 +5,7 @@
     background: rgb(242, 241, 241);
    
 }
+
 .warehouse-path{
     width: 100%;
     line-height: 2.1;
@@ -38,12 +39,58 @@
 }
 .baogia{
     width: 100%;
-    height: auto;
+    height: 100vh;
 }
 td,th{
-	justify-content: center;
-	align-items: center;
+	
+	font-size:0.9em;
 	text-align: center;
 	
 }
+.cus-id {
+	width: 64px;
+}
+.cus-name {
+	width: 180px;
+}
+.cus-email {
+	width: 300px;
+}
+.pr-id{
+	width:50px;
+}
+.pr-name {
+	width:160px;
+}
+.pr-price{
+	width:100px;
+}
+.pr-amount{
+	width:120px;
+}
+.pr-sum{
+	width:120px;
+}
+.table-header table thead {
+	background: #9b59b6;
+	color: #fff;
+}
+.table-header table thead tr th{
+	font-weight: 700;
+	font-size: 0.9em;
+	text-transform: uppercase;
+}
+.text-title{
+	color: #9b59b6;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
 

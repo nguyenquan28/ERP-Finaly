@@ -6,29 +6,40 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.apache.lucene.analysis.core.KeywordAnalyzer;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.bridge.builtin.IntegerBridge;
 
 
 @Entity
 @Table(name = "orders")
+@Indexed
 public class Orders {
-
-	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)		
+	@DocumentId
 	int id;	
 	
 	
 	String ngay;
-	String tenKH;
+	
+	@Field
+	String tenKH;	
+	@Field(termVector = TermVector.YES)
 	String email;
+	
 	int phone;
 	String diaChi;
 	String tenNguoiBan;
 	String cuaHang;	
+	@Field
 	String trangThai;
 	int tongTien;
+	
 	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@IndexedEmbedded
 	List<OrderItem>orderItems;
 	
 	public int getTongTien() {

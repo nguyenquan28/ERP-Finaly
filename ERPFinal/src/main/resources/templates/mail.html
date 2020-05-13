@@ -35,6 +35,9 @@ table ,th,td{
     float: right;
     
 }
+.title{
+	margin: 0 auto;
+}
     </style>
     
 </head>
@@ -43,18 +46,16 @@ table ,th,td{
 
 		
    <div class="box container" >
-            <div class="box-logo">
-                <img src="images/logomedusa.png" alt="" srcset="" style="width: 200px;height: 60px;">
-            </div>
+            
             
         </div>
-        <div class="box title" >
+        <div class="box title"  style="margin-left: 300px">
             <h1>Bảng báo giá sản phẩm</h1>
         </div>
         <div style="display: flex">
-        	Kính gởi khách hàng : <p th:text="${customerName}"></p>
+        	<h3>Kính gởi khách hàng : <span th:text="${customerName}"></span></h3>
         </div>
-        <div class="box box-table">
+        <div class="box box-table"style="margin-left: 100px">
           <table class="table">
               <thead>
                   <tr>
@@ -100,7 +101,7 @@ table ,th,td{
         </div>
         <div class="footer">
            <span > Đà Nẵng,ngày ..., tháng ... , năm... </span>
-            <h4 >Giám đốc</h4>
+            <h4 >Chủ tịch Nguyễn Văn Quân</h4>
             <p >...</p>
         </div>
 </body>

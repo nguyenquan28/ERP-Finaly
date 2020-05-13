@@ -8,17 +8,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.lucene.analysis.core.KeywordAnalyzer;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TermVector;
+
 @Entity
 @Table(name = "customer")
+@Indexed
 public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@DocumentId
 	int maKH;
+	
+	@Field
 	String tenKH;
 	String diaChi;
 	String phone;
 	Date ngaySinh;
+	
+	@Field(termVector = TermVector.YES)
 	String email;
 	String cmnd;
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <title>Medusa Shop</title>
+   <link th:href="@{/resources/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+	<script th:src="@{/resources/jquery/jquery.min.js}"></script>
+	<script th:src="@{/resources/bootstrap/js/bootstrap.js}"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="admin.css">
+   
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg bg-light  navbar-light fixed-top d-flex p-2" th:fragment="header">
+
+            <!-- Logo -->
+            <a class="logo" href="#">
+                <img src="images/logomedusa.png" alt="" class="offset-2">
+            </a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Search -->
+                <form class="form-outline col-md-5 ">
+                    <div class="md-form my-0">
+                        <div>
+                            <input class="form-control mr-sm-2 d-flex flex-row bg-light" type="text"
+                                placeholder="Search for Name" aria-label="Search">
+                        </div>
+
+                        <div class="search_btn d-flex flex-row">
+                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Notification -->
+                <ul class="navbar-nav nav-flex-icons offset-3">
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-envelope-o mr-2"></i>
+                            <span class="number bg-success">+5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-bell-o mr-2" aria-hidden="true"></i>
+                            <span class="number bg-warning">+1</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link noti-icon">
+                            <i class="fa fa-cogs mr-3" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item avatar  pl-md-4" data-toggle="dropdown" >
+                        <img src="images/avt.png" alt="" class="dropdown-toggle" aria-haspopup="true"
+                        aria-expanded="false">
+                        <small style="color: #a8c5de">
+                            <a href="#">Administrator</a>
+                        </small>
+                    </li>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">
+                            <a href="">Trang chủ</a>
+                        </button>
+                        
+                            <form action="#" th:action="@{/logout}" method="POST">
+                            <button class="dropdown-item" type="submit">
+                            		LogOut
+						       </button>
+						    </form>
+                    </div>
+                </ul>
+
+            </div>
+</body>
+</html>

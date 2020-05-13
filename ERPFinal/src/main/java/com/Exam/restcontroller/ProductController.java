@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Exam.Entity.Product;
-import com.Exam.service.ProductServcie;
+import com.Exam.Service.ProductServcie;
 
 @RestController
 public class ProductController {
@@ -20,9 +20,23 @@ public class ProductController {
 	@Autowired
 	ProductServcie productServcie;
 	
-	@RequestMapping(value = "/admin/getAllProduct")
+	@RequestMapping(value = "/admin/getProduct")
+	public List<Product> getProduct(@RequestParam(name = "pageNumber")int pageNumber){
+		return productServcie.getProduct(pageNumber);
+	}
+	
+	@RequestMapping(value = "/admin/getAlltProduct")
 	public List<Product> getAllProduct(){
 		return productServcie.getAllProduct();
+	}
+	
+	@RequestMapping(value = "/admin/get-last-page-product")
+	public int getlastPage(){
+		int i =  productServcie.productCount();
+		if (i % 7 == 0) {
+			return (i/7)-1;
+		}
+		return i/7;
 	}
 	
 	@RequestMapping(value = "/admin/selectByName")
@@ -42,6 +56,11 @@ public class ProductController {
 	public boolean insertOneProduct(@RequestBody Product product) {
 		productServcie.insertOneProduct(product);
 		return true;
+	}
+	
+	@RequestMapping("/api/search-product")
+	public List<Product>search(@RequestParam(name = "q")String q){
+		return productServcie.search(q);
 	}
 
 }
